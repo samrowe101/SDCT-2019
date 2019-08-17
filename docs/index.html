@@ -386,200 +386,29 @@ library(dplyr)</code></pre>
 ##     intersect, setdiff, setequal, union</code></pre>
 <pre class="r"><code>load(file=&quot;SDCTQTR.Rdata&quot;)
 load(file=&quot;Baseline.Rdata&quot;)
-head(Baseline, n=10) %&gt;% kable()</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="right">FARMID</th>
-<th align="right">CowID</th>
-<th align="left">QTR</th>
-<th align="left">Tx</th>
-<th align="left">Spectramast</th>
-<th align="right">Age</th>
-<th align="left">Parity</th>
-<th align="right">IMIDO</th>
-<th align="right">DOSCC</th>
-<th align="right">DOMY</th>
-<th align="right">DODIM</th>
-<th align="left">PrevCM</th>
-<th align="right">PrevSCCHI</th>
-<th align="right">DPlength</th>
-<th align="right">PCSampDIM</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="left">LF</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">36.08553</td>
-<td align="left">1</td>
-<td align="right">0</td>
-<td align="right">3.988984</td>
-<td align="right">32.65862</td>
-<td align="right">316</td>
-<td align="left">0</td>
-<td align="right">5.924256</td>
-<td align="right">55</td>
-<td align="right">6</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="left">LR</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">36.08553</td>
-<td align="left">1</td>
-<td align="right">0</td>
-<td align="right">3.988984</td>
-<td align="right">32.65862</td>
-<td align="right">316</td>
-<td align="left">0</td>
-<td align="right">5.924256</td>
-<td align="right">55</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="left">RF</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">36.08553</td>
-<td align="left">1</td>
-<td align="right">1</td>
-<td align="right">3.988984</td>
-<td align="right">32.65862</td>
-<td align="right">316</td>
-<td align="left">0</td>
-<td align="right">5.924256</td>
-<td align="right">55</td>
-<td align="right">6</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="left">RR</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">36.08553</td>
-<td align="left">1</td>
-<td align="right">0</td>
-<td align="right">3.988984</td>
-<td align="right">32.65862</td>
-<td align="right">316</td>
-<td align="left">0</td>
-<td align="right">5.924256</td>
-<td align="right">55</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">7</td>
-<td align="left">LF</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">61.05263</td>
-<td align="left">3</td>
-<td align="right">1</td>
-<td align="right">6.198479</td>
-<td align="right">34.01940</td>
-<td align="right">322</td>
-<td align="left">0</td>
-<td align="right">7.100852</td>
-<td align="right">46</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">7</td>
-<td align="left">LR</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">61.05263</td>
-<td align="left">3</td>
-<td align="right">0</td>
-<td align="right">6.198479</td>
-<td align="right">34.01940</td>
-<td align="right">322</td>
-<td align="left">0</td>
-<td align="right">7.100852</td>
-<td align="right">46</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">7</td>
-<td align="left">RF</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">61.05263</td>
-<td align="left">3</td>
-<td align="right">1</td>
-<td align="right">6.198479</td>
-<td align="right">34.01940</td>
-<td align="right">322</td>
-<td align="left">0</td>
-<td align="right">7.100852</td>
-<td align="right">46</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">7</td>
-<td align="left">RR</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">61.05263</td>
-<td align="left">3</td>
-<td align="right">0</td>
-<td align="right">6.198479</td>
-<td align="right">34.01940</td>
-<td align="right">322</td>
-<td align="left">0</td>
-<td align="right">7.100852</td>
-<td align="right">46</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="right">7</td>
-<td align="left">LF</td>
-<td align="left">0</td>
-<td align="left">y</td>
-<td align="right">57.82895</td>
-<td align="left">3</td>
-<td align="right">0</td>
-<td align="right">4.025352</td>
-<td align="right">30.84426</td>
-<td align="right">390</td>
-<td align="left">1</td>
-<td align="right">7.697575</td>
-<td align="right">49</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">7</td>
-<td align="left">LR</td>
-<td align="left">0</td>
-<td align="left">y</td>
-<td align="right">57.82895</td>
-<td align="left">3</td>
-<td align="right">1</td>
-<td align="right">4.025352</td>
-<td align="right">30.84426</td>
-<td align="right">390</td>
-<td align="left">1</td>
-<td align="right">7.697575</td>
-<td align="right">49</td>
-<td align="right">2</td>
-</tr>
-</tbody>
-</table>
+head(Baseline, n=10)</code></pre>
+<pre><code>##    FARMID CowID QTR Tx Spectramast      Age Parity IMIDO    DOSCC     DOMY
+## 1       6     6  LF  2           y 36.08553      1     0 3.988984 32.65862
+## 2       6     6  LR  2           y 36.08553      1     0 3.988984 32.65862
+## 3       6     6  RF  2           y 36.08553      1     1 3.988984 32.65862
+## 4       6     6  RR  2           y 36.08553      1     0 3.988984 32.65862
+## 5       1     7  LF  2           y 61.05263      3     1 6.198479 34.01940
+## 6       1     7  LR  2           y 61.05263      3     0 6.198479 34.01940
+## 7       1     7  RF  2           y 61.05263      3     1 6.198479 34.01940
+## 8       1     7  RR  2           y 61.05263      3     0 6.198479 34.01940
+## 9       2     7  LF  0           y 57.82895      3     0 4.025352 30.84426
+## 10      2     7  LR  0           y 57.82895      3     1 4.025352 30.84426
+##    DODIM PrevCM PrevSCCHI DPlength PCSampDIM
+## 1    316      0  5.924256       55         6
+## 2    316      0  5.924256       55         6
+## 3    316      0  5.924256       55         6
+## 4    316      0  5.924256       55         6
+## 5    322      0  7.100852       46         1
+## 6    322      0  7.100852       46         1
+## 7    322      0  7.100852       46         1
+## 8    322      0  7.100852       46         1
+## 9    390      1  7.697575       49         2
+## 10   390      1  7.697575       49         2</code></pre>
 <p><br> <br></p>
 </div>
 <div id="inspect-data" class="section level2">
@@ -1617,8 +1446,8 @@ style A fill:#FFFFFF, stroke-width:0px
         style I fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
         &quot;)</code></pre>
-<div id="htmlwidget-9907ae0a5dfc36aea3ba" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9907ae0a5dfc36aea3ba">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(Cure)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> T\n        K(DIM at post calving sample) --> T\n        D-->M\n        D-->S\n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-627915f5355193b7035f" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-627915f5355193b7035f">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(Cure)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> T\n        K(DIM at post calving sample) --> T\n        D-->M\n        D-->S\n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
 <p>According to this DAG, I may need to control for the following variables.</p>
 <p>Parity [“Parity”] or Age [“Age”] &lt;- likely to correlated</p>
 <p>Yield at most recent test before dry off [“DOMY”]</p>
@@ -1755,8 +1584,8 @@ style A fill:#FFFFFF, stroke-width:0px
         style I fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
         &quot;)</code></pre>
-<div id="htmlwidget-80fd09b342f556da3f04" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-80fd09b342f556da3f04">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(IMI at calving)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> M\n        I(IMI at dry off) --> T\n        K(DIM at post calving sample) --> T\n        I-->U\n        P-->I\n        A-->I\n        C-->I\n        I-->S\n        I-->M\n        D-->S\n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1b83eccb049feb727279" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1b83eccb049feb727279">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(IMI at calving)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> M\n        I(IMI at dry off) --> T\n        K(DIM at post calving sample) --> T\n        I-->U\n        P-->I\n        A-->I\n        C-->I\n        I-->S\n        I-->M\n        D-->S\n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
 <p>According to this DAG, I may need to control for the following variables.</p>
 <p>Parity [“Parity”] or Age [“Age”] &lt;- will use Parity</p>
 <p>Yield at most recent test before dry off [“DOMY”]</p>
@@ -1861,8 +1690,8 @@ style A fill:#FFFFFF, stroke-width:0px
         style I fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
         &quot;)</code></pre>
-<div id="htmlwidget-bc9ed9023f1b648e4df7" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bc9ed9023f1b648e4df7">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(New IMI)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> T\n        I(IMI at dry off) --> T\n        K(DIM at post calving sample) --> T\n        I-->U\n        P-->I\n        A-->I\n        C-->I\n        I-->S\n        I-->M\n        D-->S\n        D-->M        \n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bd768a85c933d1a83919" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bd768a85c933d1a83919">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(New IMI)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> T\n        I(IMI at dry off) --> T\n        K(DIM at post calving sample) --> T\n        I-->U\n        P-->I\n        A-->I\n        C-->I\n        I-->S\n        I-->M\n        D-->S\n        D-->M        \n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
 <p>According to this DAG, I may need to control for the following variables.</p>
 <p>Parity [“Parity”] or Age [“Age”] &lt;- will use Parity</p>
 <p>Yield at most recent test before dry off [“DOMY”]</p>

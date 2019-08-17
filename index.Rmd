@@ -41,7 +41,7 @@ library(broom)
 library(dplyr)
 load(file="SDCTQTR.Rdata")
 load(file="Baseline.Rdata")
-head(Baseline, n=10) %>% kable()
+head(Baseline, n=10)
 ```
 
 <br>
