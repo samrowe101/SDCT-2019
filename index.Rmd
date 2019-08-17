@@ -59,7 +59,7 @@ print(summarytools::dfSummary(Baseline, valid.col=FALSE,graph.magnif=0.5,varnumb
 ## Compare treatment groups at baseline
 
 ```{r}
-table1::table1(~ factor(FARMID) + Spectramast + Age + Parity + factor(IMIDO) + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM | Tx, data=SDCTQTR,topclass="Rtable1-zebra")
+table1::table1(~ factor(FARMID) + Spectramast + Age + Parity + factor(IMIDO) + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM | Tx, data=SDCTQTR,topclass="Rtable1-grid")
 ```
 
 <br>
