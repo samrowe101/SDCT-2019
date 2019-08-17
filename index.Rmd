@@ -34,6 +34,7 @@ knitr::opts_knit$set(root.dir = "~/Dropbox/R backup/SDCT - R")
 
 # Evaluate Data
 ## Show first 10 rows of baseline
+
 ```{r}
 library(broom)
 library(dplyr)
@@ -56,14 +57,17 @@ print(summarytools::dfSummary(Baseline, valid.col=FALSE,graph.magnif=0.5,varnumb
 <br>
 
 ## Compare treatment groups at baseline
+
 ```{r}
-table1::table1(~ factor(FARMID) + Spectramast + Age + Parity + factor(IMIDO) + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM | Tx, data=SDCTQTR)
+table1::table1(~ factor(FARMID) + Spectramast + Age + Parity + factor(IMIDO) + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM | Tx, data=SDCTQTR) %>% kable()
 ```
 
 <br>
 <br>
 <br>
+
 ## Compare herds
+
 ```{r}
 table1::table1(~ Age + Parity  + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM + factor(IMIDO) + factor(IMIPC) + factor(Cure) + factor(NewIMI) | factor(FARMID), data=SDCTQTR)
 ```
