@@ -21,6 +21,7 @@ output:
 <br>
 
 ```{r setup}
+library(knitr)
 #Mac
 knitr::opts_knit$set(root.dir = "~/Dropbox/R backup/SDCT - R")
 
@@ -38,7 +39,6 @@ knitr::opts_knit$set(root.dir = "~/Dropbox/R backup/SDCT - R")
 ```{r}
 library(broom)
 library(dplyr)
-library(knitr)
 load(file="SDCTQTR.Rdata")
 load(file="Baseline.Rdata")
 head(Baseline, n=10) %>% kable()
