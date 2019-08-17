@@ -14,7 +14,11 @@ output:
 
 # NOTE TO READER
 
-Analysis was conducted using R-studio and STATA. Use the tabs above to navigate between the two. 
+### Analysis was conducted using R-studio and STATA. Use the tabs above to navigate between the two. 
+
+<br>
+<br>
+<br>
 
 ```{r}
 library(knitr)
@@ -29,22 +33,16 @@ knitr::opts_knit$set(root.dir = "~/Dropbox/R backup/SDCT - R")
 
 ```
 
-
-```{r}
-library(knitr)
-```
-
-Load data
-```{r}
-load(file="SDCTQTR.Rdata")
-```
-
+<br>
+<br>
 
 # Evaluate Data
 ## Show first 10 rows of baseline
 ```{r}
 library(broom)
 library(dplyr)
+library(knitr)
+load(file="SDCTQTR.Rdata")
 load(file="Baseline.Rdata")
 head(Baseline, n=10) %>% kable()
 ```
