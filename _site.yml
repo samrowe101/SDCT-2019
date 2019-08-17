@@ -1,11 +1,9 @@
-name: "MyLabJournal"
+name: "Selective Dry Cow Therapy Analysis"
 navbar:
-  title: "MyLabJournal"
+  title: "Selective Dry Cow Therapy Analysis"
   left:
-    - text: "Home"
+    - text: "R Analysis"
       href: index.html
-    - text: "Journal"
-      href: Journal.html
-    - text: "Links"
-      href: Links.html
+    - text: "STATA Analysis"
+      href: Stata.html
 output_dir: "docs"
