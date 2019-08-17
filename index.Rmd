@@ -69,10 +69,12 @@ table1::table1(~ factor(FARMID) + Spectramast + Age + Parity + factor(IMIDO) + D
 ## Compare herds
 
 ```{r}
+?table1
 table1::table1(~ Age + Parity  + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM + factor(IMIDO) + factor(IMIPC) + factor(Cure) + factor(NewIMI) | factor(FARMID), data=SDCTQTR)
 ```
 
-
+<br>
+<br>
 
 ## Steps 1-2 of model building were conducted in R (this document).
 ## Refer to STATA log file for steps 3-6. 

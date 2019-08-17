@@ -1,6 +1,14 @@
 ---
 title: "Resources"
-output: html_document
+output: 
+  rmarkdown::html_vignette:
+    css: [style.css, vignette.css]
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Using the table1 Package to Create HTML Tables of Descriptive Statistics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteDepends{boot,MatchIt}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup}
