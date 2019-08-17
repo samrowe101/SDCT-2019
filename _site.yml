@@ -6,6 +6,4 @@ navbar:
       href: index.html
     - text: "STATA Analysis"
       href: Stata.html
-    - text: "Links"
-      href: Links.html
 output_dir: "docs"

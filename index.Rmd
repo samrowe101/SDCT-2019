@@ -69,8 +69,7 @@ table1::table1(~ factor(FARMID) + Spectramast + Age + Parity + factor(IMIDO) + D
 ## Compare herds
 
 ```{r}
-?table1
-table1::table1(~ Age + Parity  + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM + factor(IMIDO) + factor(IMIPC) + factor(Cure) + factor(NewIMI) | factor(FARMID), data=SDCTQTR)
+table1::table1(~ Age + Parity  + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM + factor(IMIDO) + factor(IMIPC) + factor(Cure) + factor(NewIMI) | factor(FARMID), data=SDCTQTR,topclass="Rtable1-grid")
 ```
 
 <br>
