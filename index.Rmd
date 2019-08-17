@@ -20,10 +20,6 @@ output:
 <br>
 <br>
 
-```{r}
-library(knitr)
-```
-
 ```{r setup}
 #Mac
 knitr::opts_knit$set(root.dir = "~/Dropbox/R backup/SDCT - R")
