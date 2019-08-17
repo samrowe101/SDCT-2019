@@ -677,740 +677,329 @@ print(summarytools::dfSummary(Baseline, valid.col=FALSE,graph.magnif=0.5,varnumb
 </div>
 <div id="compare-treatment-groups-at-baseline" class="section level2">
 <h2>Compare treatment groups at baseline</h2>
-<pre class="r"><code>table1::table1(~ factor(FARMID) + Spectramast + Age + Parity + factor(IMIDO) + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM | Tx, data=SDCTQTR) %&gt;% kable()</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">x</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-|
-<table class="Rtable1">
+<pre class="r"><code>table1::table1(~ factor(FARMID) + Spectramast + Age + Parity + factor(IMIDO) + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM | Tx, data=SDCTQTR)</code></pre>
+<div class="Rtable1"><table class="Rtable1">
 <thead>
 <tr>
-<th class="rowlabel firstrow lastrow">
-</th>
-<th class="firstrow lastrow">
-<span class="stratlabel">0<br><span class="stratn">(n=1568)</span></span>
-</th>
-<th class="firstrow lastrow">
-<span class="stratlabel">1<br><span class="stratn">(n=1592)</span></span>
-</th>
-<th class="firstrow lastrow">
-<span class="stratlabel">2<br><span class="stratn">(n=1544)</span></span>
-</th>
-<th class="firstrow lastrow">
-<span class="stratlabel">Overall<br><span class="stratn">(n=4704)</span></span>
-</th>
+<th class='rowlabel firstrow lastrow'></th>
+<th class='firstrow lastrow'><span class='stratlabel'>0<br><span class='stratn'>(n=1568)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>1<br><span class='stratn'>(n=1592)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>2<br><span class='stratn'>(n=1544)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>Overall<br><span class='stratn'>(n=4704)</span></span></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">factor(FARMID)</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>factor(FARMID)</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-1
-</td>
-<td>
-112 (7.1%)
-</td>
-<td>
-100 (6.3%)
-</td>
-<td>
-84 (5.4%)
-</td>
-<td>
-296 (6.3%)
-</td>
+<td class='rowlabel'>1</td>
+<td>112 (7.1%)</td>
+<td>100 (6.3%)</td>
+<td>84 (5.4%)</td>
+<td>296 (6.3%)</td>
 </tr>
 <tr>
-<td class="rowlabel">
-2
-</td>
-<td>
-108 (6.9%)
-</td>
-<td>
-92 (5.8%)
-</td>
-<td>
-124 (8.0%)
-</td>
-<td>
-324 (6.9%)
-</td>
+<td class='rowlabel'>2</td>
+<td>108 (6.9%)</td>
+<td>92 (5.8%)</td>
+<td>124 (8.0%)</td>
+<td>324 (6.9%)</td>
 </tr>
 <tr>
-<td class="rowlabel">
-3
-</td>
-<td>
-368 (23.5%)
-</td>
-<td>
-348 (21.9%)
-</td>
-<td>
-328 (21.2%)
-</td>
-<td>
-1044 (22.2%)
-</td>
+<td class='rowlabel'>3</td>
+<td>368 (23.5%)</td>
+<td>348 (21.9%)</td>
+<td>328 (21.2%)</td>
+<td>1044 (22.2%)</td>
 </tr>
 <tr>
-<td class="rowlabel">
-4
-</td>
-<td>
-444 (28.3%)
-</td>
-<td>
-512 (32.2%)
-</td>
-<td>
-496 (32.1%)
-</td>
-<td>
-1452 (30.9%)
-</td>
+<td class='rowlabel'>4</td>
+<td>444 (28.3%)</td>
+<td>512 (32.2%)</td>
+<td>496 (32.1%)</td>
+<td>1452 (30.9%)</td>
 </tr>
 <tr>
-<td class="rowlabel">
-5
-</td>
-<td>
-312 (19.9%)
-</td>
-<td>
-332 (20.9%)
-</td>
-<td>
-304 (19.7%)
-</td>
-<td>
-948 (20.2%)
-</td>
+<td class='rowlabel'>5</td>
+<td>312 (19.9%)</td>
+<td>332 (20.9%)</td>
+<td>304 (19.7%)</td>
+<td>948 (20.2%)</td>
 </tr>
 <tr>
-<td class="rowlabel">
-6
-</td>
-<td>
-64 (4.1%)
-</td>
-<td>
-64 (4.0%)
-</td>
-<td>
-60 (3.9%)
-</td>
-<td>
-188 (4.0%)
-</td>
+<td class='rowlabel'>6</td>
+<td>64 (4.1%)</td>
+<td>64 (4.0%)</td>
+<td>60 (3.9%)</td>
+<td>188 (4.0%)</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-7
-</td>
-<td class="lastrow">
-160 (10.2%)
-</td>
-<td class="lastrow">
-144 (9.0%)
-</td>
-<td class="lastrow">
-148 (9.6%)
-</td>
-<td class="lastrow">
-452 (9.6%)
-</td>
+<td class='rowlabel lastrow'>7</td>
+<td class='lastrow'>160 (10.2%)</td>
+<td class='lastrow'>144 (9.0%)</td>
+<td class='lastrow'>148 (9.6%)</td>
+<td class='lastrow'>452 (9.6%)</td>
 </tr>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">Spectramast</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>Spectramast</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-y
-</td>
-<td>
-1568 (100%)
-</td>
-<td>
-708 (44.5%)
-</td>
-<td>
-688 (44.6%)
-</td>
-<td>
-2964 (63.0%)
-</td>
+<td class='rowlabel'>y</td>
+<td>1568 (100%)</td>
+<td>708 (44.5%)</td>
+<td>688 (44.6%)</td>
+<td>2964 (63.0%)</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-n
-</td>
-<td class="lastrow">
-0 (0%)
-</td>
-<td class="lastrow">
-884 (55.5%)
-</td>
-<td class="lastrow">
-856 (55.4%)
-</td>
-<td class="lastrow">
-1740 (37.0%)
-</td>
+<td class='rowlabel lastrow'>n</td>
+<td class='lastrow'>0 (0%)</td>
+<td class='lastrow'>884 (55.5%)</td>
+<td class='lastrow'>856 (55.4%)</td>
+<td class='lastrow'>1740 (37.0%)</td>
 </tr>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">Age</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>Age</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-Mean (SD)
-</td>
-<td>
-47.2 (14.6)
-</td>
-<td>
-46.9 (15.9)
-</td>
-<td>
-46.1 (15.0)
-</td>
-<td>
-46.7 (15.2)
-</td>
+<td class='rowlabel'>Mean (SD)</td>
+<td>47.2 (14.6)</td>
+<td>46.9 (15.9)</td>
+<td>46.1 (15.0)</td>
+<td>46.7 (15.2)</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-Median [Min, Max]
-</td>
-<td class="lastrow">
-44.7 [30.8, 104]
-</td>
-<td class="lastrow">
-44.1 [30.4, 111]
-</td>
-<td class="lastrow">
-44.5 [30.4, 122]
-</td>
-<td class="lastrow">
-44.4 [30.4, 122]
-</td>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>44.7 [30.8, 104]</td>
+<td class='lastrow'>44.1 [30.4, 111]</td>
+<td class='lastrow'>44.5 [30.4, 122]</td>
+<td class='lastrow'>44.4 [30.4, 122]</td>
 </tr>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">Parity</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>Parity</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-1
-</td>
-<td>
-616 (39.3%)
-</td>
-<td>
-732 (46.0%)
-</td>
-<td>
-660 (42.7%)
-</td>
-<td>
-2008 (42.7%)
-</td>
+<td class='rowlabel'>1</td>
+<td>616 (39.3%)</td>
+<td>732 (46.0%)</td>
+<td>660 (42.7%)</td>
+<td>2008 (42.7%)</td>
 </tr>
 <tr>
-<td class="rowlabel">
-2
-</td>
-<td>
-516 (32.9%)
-</td>
-<td>
-416 (26.1%)
-</td>
-<td>
-488 (31.6%)
-</td>
-<td>
-1420 (30.2%)
-</td>
+<td class='rowlabel'>2</td>
+<td>516 (32.9%)</td>
+<td>416 (26.1%)</td>
+<td>488 (31.6%)</td>
+<td>1420 (30.2%)</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-3
-</td>
-<td class="lastrow">
-436 (27.8%)
-</td>
-<td class="lastrow">
-444 (27.9%)
-</td>
-<td class="lastrow">
-396 (25.6%)
-</td>
-<td class="lastrow">
-1276 (27.1%)
-</td>
+<td class='rowlabel lastrow'>3</td>
+<td class='lastrow'>436 (27.8%)</td>
+<td class='lastrow'>444 (27.9%)</td>
+<td class='lastrow'>396 (25.6%)</td>
+<td class='lastrow'>1276 (27.1%)</td>
 </tr>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">factor(IMIDO)</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>factor(IMIDO)</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-0
-</td>
-<td>
-1046 (66.7%)
-</td>
-<td>
-1069 (67.1%)
-</td>
-<td>
-1049 (67.9%)
-</td>
-<td>
-3164 (67.3%)
-</td>
+<td class='rowlabel'>0</td>
+<td>1046 (66.7%)</td>
+<td>1069 (67.1%)</td>
+<td>1049 (67.9%)</td>
+<td>3164 (67.3%)</td>
 </tr>
 <tr>
-<td class="rowlabel">
-1
-</td>
-<td>
-350 (22.3%)
-</td>
-<td>
-373 (23.4%)
-</td>
-<td>
-355 (23.0%)
-</td>
-<td>
-1078 (22.9%)
-</td>
+<td class='rowlabel'>1</td>
+<td>350 (22.3%)</td>
+<td>373 (23.4%)</td>
+<td>355 (23.0%)</td>
+<td>1078 (22.9%)</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-Missing
-</td>
-<td class="lastrow">
-172 (11.0%)
-</td>
-<td class="lastrow">
-150 (9.4%)
-</td>
-<td class="lastrow">
-140 (9.1%)
-</td>
-<td class="lastrow">
-462 (9.8%)
-</td>
+<td class='rowlabel lastrow'>Missing</td>
+<td class='lastrow'>172 (11.0%)</td>
+<td class='lastrow'>150 (9.4%)</td>
+<td class='lastrow'>140 (9.1%)</td>
+<td class='lastrow'>462 (9.8%)</td>
 </tr>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">DOSCC</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>DOSCC</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-Mean (SD)
-</td>
-<td>
-4.45 (1.21)
-</td>
-<td>
-4.38 (1.23)
-</td>
-<td>
-4.45 (1.22)
-</td>
-<td>
-4.43 (1.22)
-</td>
+<td class='rowlabel'>Mean (SD)</td>
+<td>4.45 (1.21)</td>
+<td>4.38 (1.23)</td>
+<td>4.45 (1.22)</td>
+<td>4.43 (1.22)</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-Median [Min, Max]
-</td>
-<td class="lastrow">
-4.33 [1.61, 8.35]
-</td>
-<td class="lastrow">
-4.23 [1.61, 8.59]
-</td>
-<td class="lastrow">
-4.39 [1.61, 8.25]
-</td>
-<td class="lastrow">
-4.32 [1.61, 8.59]
-</td>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>4.33 [1.61, 8.35]</td>
+<td class='lastrow'>4.23 [1.61, 8.59]</td>
+<td class='lastrow'>4.39 [1.61, 8.25]</td>
+<td class='lastrow'>4.32 [1.61, 8.59]</td>
 </tr>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">DOMY</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>DOMY</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-Mean (SD)
-</td>
-<td>
-26.7 (8.87)
-</td>
-<td>
-27.9 (8.81)
-</td>
-<td>
-27.3 (8.38)
-</td>
-<td>
-27.3 (8.70)
-</td>
+<td class='rowlabel'>Mean (SD)</td>
+<td>26.7 (8.87)</td>
+<td>27.9 (8.81)</td>
+<td>27.3 (8.38)</td>
+<td>27.3 (8.70)</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-Median [Min, Max]
-</td>
-<td class="lastrow">
-27.7 [4.54, 49.4]
-</td>
-<td class="lastrow">
-29.0 [1.81, 49.4]
-</td>
-<td class="lastrow">
-29.0 [2.72, 49.4]
-</td>
-<td class="lastrow">
-28.6 [1.81, 49.4]
-</td>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>27.7 [4.54, 49.4]</td>
+<td class='lastrow'>29.0 [1.81, 49.4]</td>
+<td class='lastrow'>29.0 [2.72, 49.4]</td>
+<td class='lastrow'>28.6 [1.81, 49.4]</td>
 </tr>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">DODIM</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>DODIM</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-Mean (SD)
-</td>
-<td>
-323 (45.6)
-</td>
-<td>
-328 (46.7)
-</td>
-<td>
-323 (44.5)
-</td>
-<td>
-325 (45.6)
-</td>
+<td class='rowlabel'>Mean (SD)</td>
+<td>323 (45.6)</td>
+<td>328 (46.7)</td>
+<td>323 (44.5)</td>
+<td>325 (45.6)</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-Median [Min, Max]
-</td>
-<td class="lastrow">
-304 [252, 584]
-</td>
-<td class="lastrow">
-310 [258, 508]
-</td>
-<td class="lastrow">
-304 [258, 512]
-</td>
-<td class="lastrow">
-306 [252, 584]
-</td>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>304 [252, 584]</td>
+<td class='lastrow'>310 [258, 508]</td>
+<td class='lastrow'>304 [258, 512]</td>
+<td class='lastrow'>306 [252, 584]</td>
 </tr>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">PrevCM</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>PrevCM</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-0
-</td>
-<td>
-1344 (85.7%)
-</td>
-<td>
-1360 (85.4%)
-</td>
-<td>
-1352 (87.6%)
-</td>
-<td>
-4056 (86.2%)
-</td>
+<td class='rowlabel'>0</td>
+<td>1344 (85.7%)</td>
+<td>1360 (85.4%)</td>
+<td>1352 (87.6%)</td>
+<td>4056 (86.2%)</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-1
-</td>
-<td class="lastrow">
-224 (14.3%)
-</td>
-<td class="lastrow">
-232 (14.6%)
-</td>
-<td class="lastrow">
-192 (12.4%)
-</td>
-<td class="lastrow">
-648 (13.8%)
-</td>
+<td class='rowlabel lastrow'>1</td>
+<td class='lastrow'>224 (14.3%)</td>
+<td class='lastrow'>232 (14.6%)</td>
+<td class='lastrow'>192 (12.4%)</td>
+<td class='lastrow'>648 (13.8%)</td>
 </tr>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">PrevSCCHI</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>PrevSCCHI</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-Mean (SD)
-</td>
-<td>
-5.37 (1.30)
-</td>
-<td>
-5.49 (1.23)
-</td>
-<td>
-5.40 (1.29)
-</td>
-<td>
-5.42 (1.28)
-</td>
+<td class='rowlabel'>Mean (SD)</td>
+<td>5.37 (1.30)</td>
+<td>5.49 (1.23)</td>
+<td>5.40 (1.29)</td>
+<td>5.42 (1.28)</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-Median [Min, Max]
-</td>
-<td class="lastrow">
-5.23 [2.87, 9.21]
-</td>
-<td class="lastrow">
-5.37 [3.14, 9.21]
-</td>
-<td class="lastrow">
-5.30 [2.94, 9.21]
-</td>
-<td class="lastrow">
-5.30 [2.87, 9.21]
-</td>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>5.23 [2.87, 9.21]</td>
+<td class='lastrow'>5.37 [3.14, 9.21]</td>
+<td class='lastrow'>5.30 [2.94, 9.21]</td>
+<td class='lastrow'>5.30 [2.87, 9.21]</td>
 </tr>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">DPlength</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>DPlength</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-Mean (SD)
-</td>
-<td>
-55.4 (7.83)
-</td>
-<td>
-56.1 (7.37)
-</td>
-<td>
-56.0 (8.19)
-</td>
-<td>
-55.8 (7.80)
-</td>
+<td class='rowlabel'>Mean (SD)</td>
+<td>55.4 (7.83)</td>
+<td>56.1 (7.37)</td>
+<td>56.0 (8.19)</td>
+<td>55.8 (7.80)</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-Median [Min, Max]
-</td>
-<td class="lastrow">
-56.0 [33.0, 84.0]
-</td>
-<td class="lastrow">
-56.0 [33.0, 84.0]
-</td>
-<td class="lastrow">
-56.0 [30.0, 87.0]
-</td>
-<td class="lastrow">
-56.0 [30.0, 87.0]
-</td>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>56.0 [33.0, 84.0]</td>
+<td class='lastrow'>56.0 [33.0, 84.0]</td>
+<td class='lastrow'>56.0 [30.0, 87.0]</td>
+<td class='lastrow'>56.0 [30.0, 87.0]</td>
 </tr>
 <tr>
-<td class="rowlabel firstrow">
-<span class="varlabel">PCSampDIM</span>
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
-<td class="firstrow">
-</td>
+<td class='rowlabel firstrow'><span class='varlabel'>PCSampDIM</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
 </tr>
 <tr>
-<td class="rowlabel">
-Mean (SD)
-</td>
-<td>
-5.81 (2.80)
-</td>
-<td>
-5.75 (2.77)
-</td>
-<td>
-5.75 (2.80)
-</td>
-<td>
-5.77 (2.79)
-</td>
+<td class='rowlabel'>Mean (SD)</td>
+<td>5.81 (2.80)</td>
+<td>5.75 (2.77)</td>
+<td>5.75 (2.80)</td>
+<td>5.77 (2.79)</td>
 </tr>
 <tr>
-<td class="rowlabel">
-Median [Min, Max]
-</td>
-<td>
-6.00 [0.00, 13.0]
-</td>
-<td>
-6.00 [0.00, 13.0]
-</td>
-<td>
-6.00 [0.00, 13.0]
-</td>
-<td>
-6.00 [0.00, 13.0]
-</td>
+<td class='rowlabel'>Median [Min, Max]</td>
+<td>6.00 [0.00, 13.0]</td>
+<td>6.00 [0.00, 13.0]</td>
+<td>6.00 [0.00, 13.0]</td>
+<td>6.00 [0.00, 13.0]</td>
 </tr>
 <tr>
-<td class="rowlabel lastrow">
-Missing
-</td>
-<td class="lastrow">
-84 (5.4%)
-</td>
-<td class="lastrow">
-84 (5.3%)
-</td>
-<td class="lastrow">
-112 (7.3%)
-</td>
-<td class="lastrow">
-280 (6.0%)
-</td>
+<td class='rowlabel lastrow'>Missing</td>
+<td class='lastrow'>84 (5.4%)</td>
+<td class='lastrow'>84 (5.3%)</td>
+<td class='lastrow'>112 (7.3%)</td>
+<td class='lastrow'>280 (6.0%)</td>
 </tr>
 </tbody>
 </table>
-<p>|</p>
+</div>
 <p><br> <br> <br></p>
 </div>
 <div id="compare-herds" class="section level2">
@@ -2025,8 +1614,8 @@ style A fill:#FFFFFF, stroke-width:0px
         style I fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
         &quot;)</code></pre>
-<div id="htmlwidget-0b03f30b91b14769464d" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0b03f30b91b14769464d">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(Cure)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> T\n        K(DIM at post calving sample) --> T\n        D-->M\n        D-->S\n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9e19d6d41a3f9b113c6b" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9e19d6d41a3f9b113c6b">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(Cure)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> T\n        K(DIM at post calving sample) --> T\n        D-->M\n        D-->S\n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
 <p>According to this DAG, I may need to control for the following variables.</p>
 <p>Parity [“Parity”] or Age [“Age”] &lt;- likely to correlated</p>
 <p>Yield at most recent test before dry off [“DOMY”]</p>
@@ -2163,8 +1752,8 @@ style A fill:#FFFFFF, stroke-width:0px
         style I fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
         &quot;)</code></pre>
-<div id="htmlwidget-7a58a7d5ce0440af7212" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7a58a7d5ce0440af7212">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(IMI at calving)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> M\n        I(IMI at dry off) --> T\n        K(DIM at post calving sample) --> T\n        I-->U\n        P-->I\n        A-->I\n        C-->I\n        I-->S\n        I-->M\n        D-->S\n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d4452a4d6460ce5acf4d" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d4452a4d6460ce5acf4d">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(IMI at calving)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> M\n        I(IMI at dry off) --> T\n        K(DIM at post calving sample) --> T\n        I-->U\n        P-->I\n        A-->I\n        C-->I\n        I-->S\n        I-->M\n        D-->S\n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
 <p>According to this DAG, I may need to control for the following variables.</p>
 <p>Parity [“Parity”] or Age [“Age”] &lt;- will use Parity</p>
 <p>Yield at most recent test before dry off [“DOMY”]</p>
@@ -2269,8 +1858,8 @@ style A fill:#FFFFFF, stroke-width:0px
         style I fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
         &quot;)</code></pre>
-<div id="htmlwidget-550df5d594cfcc285e01" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-550df5d594cfcc285e01">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(New IMI)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> T\n        I(IMI at dry off) --> T\n        K(DIM at post calving sample) --> T\n        I-->U\n        P-->I\n        A-->I\n        C-->I\n        I-->S\n        I-->M\n        D-->S\n        D-->M        \n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c1b5581ec7d9d4c7a85b" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c1b5581ec7d9d4c7a85b">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(New IMI)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> T\n        I(IMI at dry off) --> T\n        K(DIM at post calving sample) --> T\n        I-->U\n        P-->I\n        A-->I\n        C-->I\n        I-->S\n        I-->M\n        D-->S\n        D-->M        \n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
 <p>According to this DAG, I may need to control for the following variables.</p>
 <p>Parity [“Parity”] or Age [“Age”] &lt;- will use Parity</p>
 <p>Yield at most recent test before dry off [“DOMY”]</p>
