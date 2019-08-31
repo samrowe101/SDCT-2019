@@ -6,10 +6,10 @@ output: html_document
 ```{r setup}
 library(knitr)
 #Mac
-knitr::opts_knit$set(root.dir = "~/Dropbox/R backup/SDCT - R")
+#knitr::opts_knit$set(root.dir = "~/Dropbox/R backup/SDCT - R")
 
 #Windows
-#knitr::opts_knit$set(root.dir = "C:/Users/rowe0122/Dropbox/R backup/SDCT - R")
+knitr::opts_knit$set(root.dir = "C:/Users/rowe0122/Dropbox/R backup/SDCT - R")
 
 ```
 

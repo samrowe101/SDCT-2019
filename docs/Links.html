@@ -285,10 +285,7 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">R Analysis</a>
-</li>
-<li>
-  <a href="Stata.html">STATA Analysis</a>
+  <a href="index.html">Analysis log</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -309,10 +306,10 @@ $(document).ready(function () {
 
 <pre class="r"><code>library(knitr)
 #Mac
-knitr::opts_knit$set(root.dir = &quot;~/Dropbox/R backup/SDCT - R&quot;)
+#knitr::opts_knit$set(root.dir = &quot;~/Dropbox/R backup/SDCT - R&quot;)
 
 #Windows
-#knitr::opts_knit$set(root.dir = &quot;C:/Users/rowe0122/Dropbox/R backup/SDCT - R&quot;)</code></pre>
+knitr::opts_knit$set(root.dir = &quot;C:/Users/rowe0122/Dropbox/R backup/SDCT - R&quot;)</code></pre>
 <pre class="r"><code>library(broom)
 library(dplyr)
 load(file=&quot;Baseline.Rdata&quot;)</code></pre>

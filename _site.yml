@@ -2,8 +2,6 @@ name: "Selective Dry Cow Therapy Analysis"
 navbar:
   title: "Selective Dry Cow Therapy Analysis"
   left:
-    - text: "R Analysis"
+    - text: "Analysis log"
       href: index.html
-    - text: "STATA Analysis"
-      href: Stata.html
 output_dir: "docs"
