@@ -2,6 +2,8 @@ name: "Selective Dry Cow Therapy Analysis"
 navbar:
   title: "Selective Dry Cow Therapy Analysis"
   left:
-    - text: "Analysis log"
+    - text: "QTR outcomes log"
       href: index.html
+    - text: "Cow outcomes log"
+      href: Journal.html
 output_dir: "docs"

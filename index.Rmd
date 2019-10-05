@@ -13,27 +13,27 @@ output:
 <br>
 
 # NOTE TO READER
-
-### Analysis was conducted using R-studio and STATA.
+This page contains an output log for analysis. Please contact Sam Rowe (samrowe101@gmail.com) if you have questions. Analysis was conducted using R and STATA.
 
 <br>
 <br>
 <br>
 
-```{css}
+```{css, include=FALSE}
 pre code {
  white-space: 
 }
 ```
 
-```{r setup}
+```{r setup, include=FALSE}
 library(knitr)
 #Mac
-#knitr::opts_knit$set(root.dir = "~/Dropbox/R backup/SDCT - R")
+knitr::opts_knit$set(root.dir = "~/Dropbox/R backup/SDCT - R")
 
 #Windows
-knitr::opts_knit$set(root.dir = "C:/Users/rowe0122/Dropbox/R backup/SDCT - R")
+#knitr::opts_knit$set(root.dir = "C:/Users/rowe0122/Dropbox/R backup/SDCT - R")
 
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE)
 ```
 
 <br>
