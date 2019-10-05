@@ -1,1591 +1,153 @@
-<!DOCTYPE html>
+---
+title: "Randomized controlled non-inferiority trial investigating the effect of two selective dry cow therapy protocols on antibiotic use and udder health - quarter-level outcomes"
+date: August 1st, 2019
+author: Sam Rowe (samrowe101@gmail.com)
+output:
+  html_document:
+    toc: true
+---
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<br>
+<br>
+<br>
+<br>
 
-<head>
+# NOTE TO READER
+This page contains an output log for analysis. Please contact Sam Rowe (samrowe101@gmail.com) if you have questions. Analysis was conducted using R and STATA.
 
-<meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
+<br>
+<br>
+<br>
 
-
-<meta name="author" content="Sam Rowe (samrowe101@gmail.com)" />
-
-
-<title>Randomized controlled non-inferiority trial investigating the effect of two selective dry cow therapy protocols on antibiotic use and udder health - quarter-level outcomes</title>
-
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
-<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="site_libs/d3-3.3.8/d3.min.js"></script>
-<script src="site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
-<link href="site_libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
-<script src="site_libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
-<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-<script src="site_libs/chromatography-0.1/chromatography.js"></script>
-<script src="site_libs/DiagrammeR-binding-1.0.1/DiagrammeR.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
+```{css, include=FALSE}
+pre code {
+ white-space: 
 }
-</script>
+```
 
+```{r setup, include=FALSE}
+library(knitr)
+#Mac
+knitr::opts_knit$set(root.dir = "~/Dropbox/R backup/SDCT - R")
 
+#Windows
+#knitr::opts_knit$set(root.dir = "C:/Users/rowe0122/Dropbox/R backup/SDCT - R")
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE)
+```
 
+<br>
+<br>
 
+# Evaluate Data
+## Show first 10 rows of baseline
 
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-summary {
-  display: list-item;
-}
-</style>
-
-
-<style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
-}
-</style>
-
-<script>
-// manage active state of menu based on current page
-$(document).ready(function () {
-  // active menu anchor
-  href = window.location.pathname
-  href = href.substr(href.lastIndexOf('/') + 1)
-  if (href === "")
-    href = "index.html";
-  var menuAnchor = $('a[href="' + href + '"]');
-
-  // mark it active
-  menuAnchor.parent().addClass('active');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
-});
-</script>
-
-<!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
-
-
-
-</head>
-
-<body>
-
-
-<div class="container-fluid main-container">
-
-
-
-
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">Selective Dry Cow Therapy Analysis</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="QTRoutcomes.html">QTR outcomes log</a>
-</li>
-<li>
-  <a href="Cowoutcomes.html">Cow outcomes log</a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
-
-<div class="fluid-row" id="header">
-
-
-
-<h1 class="title toc-ignore">Randomized controlled non-inferiority trial investigating the effect of two selective dry cow therapy protocols on antibiotic use and udder health - quarter-level outcomes</h1>
-<h4 class="author">Sam Rowe (<a href="mailto:samrowe101@gmail.com" class="email">samrowe101@gmail.com</a>)</h4>
-<h4 class="date">August 1st, 2019</h4>
-
-</div>
-
-<div id="TOC">
-<ul>
-<li><a href="#note-to-reader">NOTE TO READER</a></li>
-<li><a href="#evaluate-data">Evaluate Data</a><ul>
-<li><a href="#show-first-10-rows-of-baseline">Show first 10 rows of baseline</a></li>
-<li><a href="#inspect-data">Inspect Data</a></li>
-<li><a href="#compare-treatment-groups-at-baseline">Compare treatment groups at baseline</a></li>
-<li><a href="#compare-herds">Compare herds</a></li>
-<li><a href="#steps-1-2-of-model-building-were-conducted-in-r">Steps 1-2 of model building were conducted in R</a></li>
-</ul></li>
-<li><a href="#outcome-1-cure">Outcome 1: Cure</a><ul>
-<li><a href="#logistic-regression-model-for-dry-period-cure">Logistic regression model for dry period cure</a></li>
-<li><a href="#model-building-plan">Model building plan</a><ul>
-<li><a href="#step-1-dag">Step 1: DAG</a></li>
-<li><a href="#step-2-identify-correlated-covariates">Step 2: Identify correlated covariates</a></li>
-<li><a href="#steps-3-to-6-conducted-in-stata-log-file-below">Steps 3 to 6 conducted in STATA (log file below)</a></li>
-</ul></li>
-<li><a href="#final-model-imi-cure">Final Model: IMI cure</a></li>
-</ul></li>
-<li><a href="#outcome-2-imi-at-calving">Outcome 2: IMI at Calving</a><ul>
-<li><a href="#logistic-regression-model-for-imi-at-calving">Logistic regression model for IMI at calving</a></li>
-<li><a href="#model-building-plan-1">Model building plan</a><ul>
-<li><a href="#step-1-dag-1">Step 1: DAG</a></li>
-<li><a href="#steps-2-to-5-done-in-stata-log-below">Steps 2 to 5 done in STATA (log below)</a></li>
-</ul></li>
-<li><a href="#final-model-imi-post-calving">Final model: IMI post calving</a></li>
-</ul></li>
-<li><a href="#outcome-3-new-imi">Outcome 3: New IMI</a><ul>
-<li><a href="#logistic-regression-model-for-new-imi">Logistic regression model for new IMI</a></li>
-<li><a href="#model-building-plan-2">Model building plan</a><ul>
-<li><a href="#step-1-dag-2">Step 1: DAG</a></li>
-<li><a href="#steps-2-to-5-done-in-stata-log-below-1">Steps 2 to 5 done in STATA (log below)</a></li>
-</ul></li>
-<li><a href="#final-model-newimi">Final model: NewIMI</a></li>
-</ul></li>
-</ul>
-</div>
-
-<p><br> <br> <br> <br></p>
-<div id="note-to-reader" class="section level1">
-<h1>NOTE TO READER</h1>
-<p>This page contains an output log for analysis. Please contact Sam Rowe (<a href="mailto:samrowe101@gmail.com" class="email">samrowe101@gmail.com</a>) if you have questions. Analysis was conducted using R and STATA.</p>
-<p><br> <br> <br></p>
-<p><br> <br></p>
-</div>
-<div id="evaluate-data" class="section level1">
-<h1>Evaluate Data</h1>
-<div id="show-first-10-rows-of-baseline" class="section level2">
-<h2>Show first 10 rows of baseline</h2>
-<pre class="r"><code>library(broom)
+```{r}
+library(broom)
 library(dplyr)
-load(file=&quot;SDCTQTR.Rdata&quot;)
-load(file=&quot;Baseline.Rdata&quot;)
-head(Baseline, n=10) %&gt;% kable()</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="right">FARMID</th>
-<th align="right">CowID</th>
-<th align="left">QTR</th>
-<th align="left">Tx</th>
-<th align="left">Spectramast</th>
-<th align="right">Age</th>
-<th align="left">Parity</th>
-<th align="right">IMIDO</th>
-<th align="right">DOSCC</th>
-<th align="right">DOMY</th>
-<th align="right">DODIM</th>
-<th align="left">PrevCM</th>
-<th align="right">PrevSCCHI</th>
-<th align="right">DPlength</th>
-<th align="right">PCSampDIM</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="left">LF</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">36.08553</td>
-<td align="left">1</td>
-<td align="right">0</td>
-<td align="right">3.988984</td>
-<td align="right">32.65862</td>
-<td align="right">316</td>
-<td align="left">0</td>
-<td align="right">5.924256</td>
-<td align="right">55</td>
-<td align="right">6</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="left">LR</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">36.08553</td>
-<td align="left">1</td>
-<td align="right">0</td>
-<td align="right">3.988984</td>
-<td align="right">32.65862</td>
-<td align="right">316</td>
-<td align="left">0</td>
-<td align="right">5.924256</td>
-<td align="right">55</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="left">RF</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">36.08553</td>
-<td align="left">1</td>
-<td align="right">1</td>
-<td align="right">3.988984</td>
-<td align="right">32.65862</td>
-<td align="right">316</td>
-<td align="left">0</td>
-<td align="right">5.924256</td>
-<td align="right">55</td>
-<td align="right">6</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="left">RR</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">36.08553</td>
-<td align="left">1</td>
-<td align="right">0</td>
-<td align="right">3.988984</td>
-<td align="right">32.65862</td>
-<td align="right">316</td>
-<td align="left">0</td>
-<td align="right">5.924256</td>
-<td align="right">55</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">7</td>
-<td align="left">LF</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">61.05263</td>
-<td align="left">3</td>
-<td align="right">1</td>
-<td align="right">6.198479</td>
-<td align="right">34.01940</td>
-<td align="right">322</td>
-<td align="left">0</td>
-<td align="right">7.100852</td>
-<td align="right">46</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">7</td>
-<td align="left">LR</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">61.05263</td>
-<td align="left">3</td>
-<td align="right">0</td>
-<td align="right">6.198479</td>
-<td align="right">34.01940</td>
-<td align="right">322</td>
-<td align="left">0</td>
-<td align="right">7.100852</td>
-<td align="right">46</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">7</td>
-<td align="left">RF</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">61.05263</td>
-<td align="left">3</td>
-<td align="right">1</td>
-<td align="right">6.198479</td>
-<td align="right">34.01940</td>
-<td align="right">322</td>
-<td align="left">0</td>
-<td align="right">7.100852</td>
-<td align="right">46</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">7</td>
-<td align="left">RR</td>
-<td align="left">2</td>
-<td align="left">y</td>
-<td align="right">61.05263</td>
-<td align="left">3</td>
-<td align="right">0</td>
-<td align="right">6.198479</td>
-<td align="right">34.01940</td>
-<td align="right">322</td>
-<td align="left">0</td>
-<td align="right">7.100852</td>
-<td align="right">46</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="right">7</td>
-<td align="left">LF</td>
-<td align="left">0</td>
-<td align="left">y</td>
-<td align="right">57.82895</td>
-<td align="left">3</td>
-<td align="right">0</td>
-<td align="right">4.025352</td>
-<td align="right">30.84426</td>
-<td align="right">390</td>
-<td align="left">1</td>
-<td align="right">7.697575</td>
-<td align="right">49</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">7</td>
-<td align="left">LR</td>
-<td align="left">0</td>
-<td align="left">y</td>
-<td align="right">57.82895</td>
-<td align="left">3</td>
-<td align="right">1</td>
-<td align="right">4.025352</td>
-<td align="right">30.84426</td>
-<td align="right">390</td>
-<td align="left">1</td>
-<td align="right">7.697575</td>
-<td align="right">49</td>
-<td align="right">2</td>
-</tr>
-</tbody>
-</table>
-<p><br> <br></p>
-</div>
-<div id="inspect-data" class="section level2">
-<h2>Inspect Data</h2>
-<pre class="r"><code>#summarytools::dfSummary(Baseline, style=&#39;grid&#39;)
+load(file="SDCTQTR.Rdata")
+load(file="Baseline.Rdata")
+head(Baseline, n=10) %>% kable()
+```
 
-print(summarytools::dfSummary(Baseline, valid.col=FALSE,graph.magnif=0.5,varnumbers=F,style=&quot;grid&quot;))</code></pre>
-<pre><code>## Data Frame Summary  
-##   
-## Dimensions: 4704 x 15  
-## Duplicates: 0  
-## 
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | Variable     | Stats / Values             | Freqs (% of Valid)   | Graph                      | Missing |
-## +==============+============================+======================+============================+=========+
-## | FARMID       | Mean (sd) : 4 (1.5)        | 1 :  296 ( 6.3%)     | I                          | 0       |
-## | [numeric]    | min &lt; med &lt; max:           | 2 :  324 ( 6.9%)     | I                          | (0%)    |
-## |              | 1 &lt; 4 &lt; 7                  | 3 : 1044 (22.2%)     | IIII                       |         |
-## |              | IQR (CV) : 2 (0.4)         | 4 : 1452 (30.9%)     | IIIIII                     |         |
-## |              |                            | 5 :  948 (20.2%)     | IIII                       |         |
-## |              |                            | 6 :  188 ( 4.0%)     |                            |         |
-## |              |                            | 7 :  452 ( 9.6%)     | I                          |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | CowID        | Mean (sd) : 4575.5 (3181)  | 1116 distinct values |     :                      | 0       |
-## | [numeric]    | min &lt; med &lt; max:           |                      | : : :                      | (0%)    |
-## |              | 6 &lt; 4298 &lt; 23096           |                      | : : :                      |         |
-## |              | IQR (CV) : 4152.5 (0.7)    |                      | : : :                      |         |
-## |              |                            |                      | : : : :   . .              |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | QTR          | 1. LF                      | 1176 (25.0%)         | IIIII                      | 0       |
-## | [factor]     | 2. LR                      | 1176 (25.0%)         | IIIII                      | (0%)    |
-## |              | 3. RF                      | 1176 (25.0%)         | IIIII                      |         |
-## |              | 4. RR                      | 1176 (25.0%)         | IIIII                      |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | Tx           | 1. 0                       | 1568 (33.3%)         | IIIIII                     | 0       |
-## | [factor]     | 2. 1                       | 1592 (33.8%)         | IIIIII                     | (0%)    |
-## |              | 3. 2                       | 1544 (32.8%)         | IIIIII                     |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | Spectramast  | 1. n                       | 1740 (37.0%)         | IIIIIII                    | 0       |
-## | [character]  | 2. y                       | 2964 (63.0%)         | IIIIIIIIIIII               | (0%)    |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | Age          | Mean (sd) : 46.7 (15.2)    | 663 distinct values  | :                          | 0       |
-## | [numeric]    | min &lt; med &lt; max:           |                      | :                          | (0%)    |
-## |              | 30.4 &lt; 44.4 &lt; 122.3        |                      | : :                        |         |
-## |              | IQR (CV) : 22.4 (0.3)      |                      | : : .                      |         |
-## |              |                            |                      | : : : : : .                |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | Parity       | 1. 1                       | 2008 (42.7%)         | IIIIIIII                   | 0       |
-## | [factor]     | 2. 2                       | 1420 (30.2%)         | IIIIII                     | (0%)    |
-## |              | 3. 3                       | 1276 (27.1%)         | IIIII                      |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | IMIDO        | Min  : 0                   | 0 : 3164 (74.6%)     | IIIIIIIIIIIIII             | 462     |
-## | [numeric]    | Mean : 0.3                 | 1 : 1078 (25.4%)     | IIIII                      | (9.82%) |
-## |              | Max  : 1                   |                      |                            |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | DOSCC        | Mean (sd) : 4.4 (1.2)      | 395 distinct values  |       :                    | 0       |
-## | [numeric]    | min &lt; med &lt; max:           |                      |     . : :                  | (0%)    |
-## |              | 1.6 &lt; 4.3 &lt; 8.6            |                      |     : : : .                |         |
-## |              | IQR (CV) : 1.6 (0.3)       |                      |   : : : : : .              |         |
-## |              |                            |                      | . : : : : : : : .          |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | DOMY         | Mean (sd) : 27.3 (8.7)     | 87 distinct values   |             :              | 0       |
-## | [numeric]    | min &lt; med &lt; max:           |                      |           : :              | (0%)    |
-## |              | 1.8 &lt; 28.6 &lt; 49.4          |                      |         : : : .            |         |
-## |              | IQR (CV) : 10.9 (0.3)      |                      |       . : : : :            |         |
-## |              |                            |                      | . : : : : : : : .          |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | DODIM        | Mean (sd) : 324.7 (45.6)   | 179 distinct values  |   :                        | 0       |
-## | [numeric]    | min &lt; med &lt; max:           |                      |   :                        | (0%)    |
-## |              | 252 &lt; 305.5 &lt; 584          |                      |   :                        |         |
-## |              | IQR (CV) : 49 (0.1)        |                      |   : .                      |         |
-## |              |                            |                      |   : : : . .                |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | PrevCM       | 1. 0                       | 4056 (86.2%)         | IIIIIIIIIIIIIIIII          | 0       |
-## | [factor]     | 2. 1                       |  648 (13.8%)         | II                         | (0%)    |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | PrevSCCHI    | Mean (sd) : 5.4 (1.3)      | 611 distinct values  |     . :                    | 0       |
-## | [numeric]    | min &lt; med &lt; max:           |                      |     : : : .                | (0%)    |
-## |              | 2.9 &lt; 5.3 &lt; 9.2            |                      |   : : : : :                |         |
-## |              | IQR (CV) : 1.8 (0.2)       |                      |   : : : : : : .            |         |
-## |              |                            |                      | : : : : : : : : . .        |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | DPlength     | Mean (sd) : 55.8 (7.8)     | 54 distinct values   |         :                  | 0       |
-## | [numeric]    | min &lt; med &lt; max:           |                      |         :                  | (0%)    |
-## |              | 30 &lt; 56 &lt; 87               |                      |         : :                |         |
-## |              | IQR (CV) : 8 (0.1)         |                      |       : : :                |         |
-## |              |                            |                      |   . : : : : : .            |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+
-## | PCSampDIM    | Mean (sd) : 5.8 (2.8)      | 14 distinct values   |       :                    | 280     |
-## | [numeric]    | min &lt; med &lt; max:           |                      |       :     :              | (5.95%) |
-## |              | 0 &lt; 6 &lt; 13                 |                      |     . : . . :              |         |
-## |              | IQR (CV) : 4 (0.5)         |                      | .   : : : : :              |         |
-## |              |                            |                      | : : : : : : : : . .        |         |
-## +--------------+----------------------------+----------------------+----------------------------+---------+</code></pre>
-<p><br> <br></p>
-</div>
-<div id="compare-treatment-groups-at-baseline" class="section level2">
-<h2>Compare treatment groups at baseline</h2>
-<pre class="r"><code>table1::table1(~ factor(FARMID) + Spectramast + Age + Parity + factor(IMIDO) + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM | Tx, data=SDCTQTR,topclass=&quot;Rtable1-grid&quot;)</code></pre>
-<div class="Rtable1"><table class="Rtable1-grid">
-<thead>
-<tr>
-<th class='rowlabel firstrow lastrow'></th>
-<th class='firstrow lastrow'><span class='stratlabel'>0<br><span class='stratn'>(n=1568)</span></span></th>
-<th class='firstrow lastrow'><span class='stratlabel'>1<br><span class='stratn'>(n=1592)</span></span></th>
-<th class='firstrow lastrow'><span class='stratlabel'>2<br><span class='stratn'>(n=1544)</span></span></th>
-<th class='firstrow lastrow'><span class='stratlabel'>Overall<br><span class='stratn'>(n=4704)</span></span></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>factor(FARMID)</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>1</td>
-<td>112 (7.1%)</td>
-<td>100 (6.3%)</td>
-<td>84 (5.4%)</td>
-<td>296 (6.3%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>2</td>
-<td>108 (6.9%)</td>
-<td>92 (5.8%)</td>
-<td>124 (8.0%)</td>
-<td>324 (6.9%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>3</td>
-<td>368 (23.5%)</td>
-<td>348 (21.9%)</td>
-<td>328 (21.2%)</td>
-<td>1044 (22.2%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>4</td>
-<td>444 (28.3%)</td>
-<td>512 (32.2%)</td>
-<td>496 (32.1%)</td>
-<td>1452 (30.9%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>5</td>
-<td>312 (19.9%)</td>
-<td>332 (20.9%)</td>
-<td>304 (19.7%)</td>
-<td>948 (20.2%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>6</td>
-<td>64 (4.1%)</td>
-<td>64 (4.0%)</td>
-<td>60 (3.9%)</td>
-<td>188 (4.0%)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>7</td>
-<td class='lastrow'>160 (10.2%)</td>
-<td class='lastrow'>144 (9.0%)</td>
-<td class='lastrow'>148 (9.6%)</td>
-<td class='lastrow'>452 (9.6%)</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>Spectramast</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>y</td>
-<td>1568 (100%)</td>
-<td>708 (44.5%)</td>
-<td>688 (44.6%)</td>
-<td>2964 (63.0%)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>n</td>
-<td class='lastrow'>0 (0%)</td>
-<td class='lastrow'>884 (55.5%)</td>
-<td class='lastrow'>856 (55.4%)</td>
-<td class='lastrow'>1740 (37.0%)</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>Age</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>47.2 (14.6)</td>
-<td>46.9 (15.9)</td>
-<td>46.1 (15.0)</td>
-<td>46.7 (15.2)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>44.7 [30.8, 104]</td>
-<td class='lastrow'>44.1 [30.4, 111]</td>
-<td class='lastrow'>44.5 [30.4, 122]</td>
-<td class='lastrow'>44.4 [30.4, 122]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>Parity</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>1</td>
-<td>616 (39.3%)</td>
-<td>732 (46.0%)</td>
-<td>660 (42.7%)</td>
-<td>2008 (42.7%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>2</td>
-<td>516 (32.9%)</td>
-<td>416 (26.1%)</td>
-<td>488 (31.6%)</td>
-<td>1420 (30.2%)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>3</td>
-<td class='lastrow'>436 (27.8%)</td>
-<td class='lastrow'>444 (27.9%)</td>
-<td class='lastrow'>396 (25.6%)</td>
-<td class='lastrow'>1276 (27.1%)</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>factor(IMIDO)</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>0</td>
-<td>1046 (66.7%)</td>
-<td>1069 (67.1%)</td>
-<td>1049 (67.9%)</td>
-<td>3164 (67.3%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>1</td>
-<td>350 (22.3%)</td>
-<td>373 (23.4%)</td>
-<td>355 (23.0%)</td>
-<td>1078 (22.9%)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Missing</td>
-<td class='lastrow'>172 (11.0%)</td>
-<td class='lastrow'>150 (9.4%)</td>
-<td class='lastrow'>140 (9.1%)</td>
-<td class='lastrow'>462 (9.8%)</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>DOSCC</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>4.45 (1.21)</td>
-<td>4.38 (1.23)</td>
-<td>4.45 (1.22)</td>
-<td>4.43 (1.22)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>4.33 [1.61, 8.35]</td>
-<td class='lastrow'>4.23 [1.61, 8.59]</td>
-<td class='lastrow'>4.39 [1.61, 8.25]</td>
-<td class='lastrow'>4.32 [1.61, 8.59]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>DOMY</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>26.7 (8.87)</td>
-<td>27.9 (8.81)</td>
-<td>27.3 (8.38)</td>
-<td>27.3 (8.70)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>27.7 [4.54, 49.4]</td>
-<td class='lastrow'>29.0 [1.81, 49.4]</td>
-<td class='lastrow'>29.0 [2.72, 49.4]</td>
-<td class='lastrow'>28.6 [1.81, 49.4]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>DODIM</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>323 (45.6)</td>
-<td>328 (46.7)</td>
-<td>323 (44.5)</td>
-<td>325 (45.6)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>304 [252, 584]</td>
-<td class='lastrow'>310 [258, 508]</td>
-<td class='lastrow'>304 [258, 512]</td>
-<td class='lastrow'>306 [252, 584]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>PrevCM</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>0</td>
-<td>1344 (85.7%)</td>
-<td>1360 (85.4%)</td>
-<td>1352 (87.6%)</td>
-<td>4056 (86.2%)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>1</td>
-<td class='lastrow'>224 (14.3%)</td>
-<td class='lastrow'>232 (14.6%)</td>
-<td class='lastrow'>192 (12.4%)</td>
-<td class='lastrow'>648 (13.8%)</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>PrevSCCHI</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>5.37 (1.30)</td>
-<td>5.49 (1.23)</td>
-<td>5.40 (1.29)</td>
-<td>5.42 (1.28)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>5.23 [2.87, 9.21]</td>
-<td class='lastrow'>5.37 [3.14, 9.21]</td>
-<td class='lastrow'>5.30 [2.94, 9.21]</td>
-<td class='lastrow'>5.30 [2.87, 9.21]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>DPlength</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>55.4 (7.83)</td>
-<td>56.1 (7.37)</td>
-<td>56.0 (8.19)</td>
-<td>55.8 (7.80)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>56.0 [33.0, 84.0]</td>
-<td class='lastrow'>56.0 [33.0, 84.0]</td>
-<td class='lastrow'>56.0 [30.0, 87.0]</td>
-<td class='lastrow'>56.0 [30.0, 87.0]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>PCSampDIM</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>5.81 (2.80)</td>
-<td>5.75 (2.77)</td>
-<td>5.75 (2.80)</td>
-<td>5.77 (2.79)</td>
-</tr>
-<tr>
-<td class='rowlabel'>Median [Min, Max]</td>
-<td>6.00 [0.00, 13.0]</td>
-<td>6.00 [0.00, 13.0]</td>
-<td>6.00 [0.00, 13.0]</td>
-<td>6.00 [0.00, 13.0]</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Missing</td>
-<td class='lastrow'>84 (5.4%)</td>
-<td class='lastrow'>84 (5.3%)</td>
-<td class='lastrow'>112 (7.3%)</td>
-<td class='lastrow'>280 (6.0%)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><br> <br> <br></p>
-</div>
-<div id="compare-herds" class="section level2">
-<h2>Compare herds</h2>
-<pre class="r"><code>table1::table1(~ Age + Parity  + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM + factor(IMIDO) + factor(IMIPC) + factor(Cure) + factor(NewIMI) | factor(FARMID), data=SDCTQTR,topclass=&quot;Rtable1-grid&quot;)</code></pre>
-<div class="Rtable1"><table class="Rtable1-grid">
-<thead>
-<tr>
-<th class='rowlabel firstrow lastrow'></th>
-<th class='firstrow lastrow'><span class='stratlabel'>1<br><span class='stratn'>(n=296)</span></span></th>
-<th class='firstrow lastrow'><span class='stratlabel'>2<br><span class='stratn'>(n=324)</span></span></th>
-<th class='firstrow lastrow'><span class='stratlabel'>3<br><span class='stratn'>(n=1044)</span></span></th>
-<th class='firstrow lastrow'><span class='stratlabel'>4<br><span class='stratn'>(n=1452)</span></span></th>
-<th class='firstrow lastrow'><span class='stratlabel'>5<br><span class='stratn'>(n=948)</span></span></th>
-<th class='firstrow lastrow'><span class='stratlabel'>6<br><span class='stratn'>(n=188)</span></span></th>
-<th class='firstrow lastrow'><span class='stratlabel'>7<br><span class='stratn'>(n=452)</span></span></th>
-<th class='firstrow lastrow'><span class='stratlabel'>Overall<br><span class='stratn'>(n=4704)</span></span></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>Age</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>48.4 (16.0)</td>
-<td>46.8 (14.3)</td>
-<td>46.8 (13.4)</td>
-<td>46.7 (16.1)</td>
-<td>46.9 (15.9)</td>
-<td>42.9 (11.1)</td>
-<td>46.6 (16.1)</td>
-<td>46.7 (15.2)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>44.4 [30.6, 90.2]</td>
-<td class='lastrow'>44.5 [30.7, 95.7]</td>
-<td class='lastrow'>44.8 [30.4, 95.5]</td>
-<td class='lastrow'>44.2 [31.7, 122]</td>
-<td class='lastrow'>44.5 [30.4, 115]</td>
-<td class='lastrow'>43.7 [31.0, 82.6]</td>
-<td class='lastrow'>44.6 [31.0, 114]</td>
-<td class='lastrow'>44.4 [30.4, 122]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>Parity</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>1</td>
-<td>124 (41.9%)</td>
-<td>132 (40.7%)</td>
-<td>364 (34.9%)</td>
-<td>700 (48.2%)</td>
-<td>408 (43.0%)</td>
-<td>92 (48.9%)</td>
-<td>188 (41.6%)</td>
-<td>2008 (42.7%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>2</td>
-<td>60 (20.3%)</td>
-<td>108 (33.3%)</td>
-<td>380 (36.4%)</td>
-<td>376 (25.9%)</td>
-<td>288 (30.4%)</td>
-<td>68 (36.2%)</td>
-<td>140 (31.0%)</td>
-<td>1420 (30.2%)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>3</td>
-<td class='lastrow'>112 (37.8%)</td>
-<td class='lastrow'>84 (25.9%)</td>
-<td class='lastrow'>300 (28.7%)</td>
-<td class='lastrow'>376 (25.9%)</td>
-<td class='lastrow'>252 (26.6%)</td>
-<td class='lastrow'>28 (14.9%)</td>
-<td class='lastrow'>124 (27.4%)</td>
-<td class='lastrow'>1276 (27.1%)</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>DOSCC</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>4.50 (1.00)</td>
-<td>4.07 (1.14)</td>
-<td>4.00 (0.909)</td>
-<td>4.48 (1.17)</td>
-<td>5.17 (1.39)</td>
-<td>4.34 (0.958)</td>
-<td>3.91 (1.08)</td>
-<td>4.43 (1.22)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>4.54 [2.56, 7.59]</td>
-<td class='lastrow'>3.95 [2.30, 8.17]</td>
-<td class='lastrow'>3.98 [2.60, 6.68]</td>
-<td class='lastrow'>4.47 [1.61, 8.59]</td>
-<td class='lastrow'>5.13 [1.61, 8.35]</td>
-<td class='lastrow'>4.47 [2.56, 6.61]</td>
-<td class='lastrow'>3.78 [2.56, 7.38]</td>
-<td class='lastrow'>4.32 [1.61, 8.59]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>DOMY</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>22.9 (6.26)</td>
-<td>26.7 (9.65)</td>
-<td>29.5 (6.87)</td>
-<td>30.3 (7.72)</td>
-<td>19.6 (8.57)</td>
-<td>30.7 (4.77)</td>
-<td>30.6 (6.31)</td>
-<td>27.3 (8.70)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>22.7 [9.07, 38.1]</td>
-<td class='lastrow'>28.6 [2.72, 44.0]</td>
-<td class='lastrow'>30.4 [8.62, 47.6]</td>
-<td class='lastrow'>30.4 [2.72, 49.4]</td>
-<td class='lastrow'>20.0 [1.81, 39.9]</td>
-<td class='lastrow'>30.8 [16.8, 40.8]</td>
-<td class='lastrow'>30.8 [15.4, 48.5]</td>
-<td class='lastrow'>28.6 [1.81, 49.4]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>DODIM</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>347 (51.7)</td>
-<td>334 (52.7)</td>
-<td>313 (37.6)</td>
-<td>325 (44.3)</td>
-<td>329 (50.6)</td>
-<td>328 (43.0)</td>
-<td>321 (39.0)</td>
-<td>325 (45.6)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>326 [292, 584]</td>
-<td class='lastrow'>304 [293, 512]</td>
-<td class='lastrow'>293 [266, 475]</td>
-<td class='lastrow'>296 [283, 468]</td>
-<td class='lastrow'>308 [252, 512]</td>
-<td class='lastrow'>314 [258, 444]</td>
-<td class='lastrow'>307 [272, 476]</td>
-<td class='lastrow'>306 [252, 584]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>PrevCM</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>0</td>
-<td>244 (82.4%)</td>
-<td>320 (98.8%)</td>
-<td>904 (86.6%)</td>
-<td>1252 (86.2%)</td>
-<td>748 (78.9%)</td>
-<td>184 (97.9%)</td>
-<td>404 (89.4%)</td>
-<td>4056 (86.2%)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>1</td>
-<td class='lastrow'>52 (17.6%)</td>
-<td class='lastrow'>4 (1.2%)</td>
-<td class='lastrow'>140 (13.4%)</td>
-<td class='lastrow'>200 (13.8%)</td>
-<td class='lastrow'>200 (21.1%)</td>
-<td class='lastrow'>4 (2.1%)</td>
-<td class='lastrow'>48 (10.6%)</td>
-<td class='lastrow'>648 (13.8%)</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>PrevSCCHI</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>5.46 (1.31)</td>
-<td>5.06 (1.31)</td>
-<td>4.77 (1.08)</td>
-<td>5.76 (1.20)</td>
-<td>6.13 (1.11)</td>
-<td>5.02 (0.920)</td>
-<td>4.73 (1.16)</td>
-<td>5.42 (1.28)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>5.31 [3.43, 9.21]</td>
-<td class='lastrow'>4.78 [3.33, 9.21]</td>
-<td class='lastrow'>4.61 [2.87, 8.21]</td>
-<td class='lastrow'>5.65 [3.00, 9.21]</td>
-<td class='lastrow'>6.06 [3.40, 9.21]</td>
-<td class='lastrow'>5.09 [3.09, 7.06]</td>
-<td class='lastrow'>4.53 [2.94, 8.00]</td>
-<td class='lastrow'>5.30 [2.87, 9.21]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>DPlength</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>53.1 (11.7)</td>
-<td>52.6 (5.62)</td>
-<td>57.9 (6.38)</td>
-<td>56.1 (6.00)</td>
-<td>55.6 (8.19)</td>
-<td>60.3 (7.14)</td>
-<td>53.0 (10.6)</td>
-<td>55.8 (7.80)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Median [Min, Max]</td>
-<td class='lastrow'>52.0 [32.0, 85.0]</td>
-<td class='lastrow'>53.0 [30.0, 63.0]</td>
-<td class='lastrow'>58.0 [35.0, 87.0]</td>
-<td class='lastrow'>56.0 [35.0, 74.0]</td>
-<td class='lastrow'>55.0 [35.0, 85.0]</td>
-<td class='lastrow'>60.0 [47.0, 84.0]</td>
-<td class='lastrow'>55.0 [33.0, 77.0]</td>
-<td class='lastrow'>56.0 [30.0, 87.0]</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>PCSampDIM</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>Mean (SD)</td>
-<td>2.70 (1.84)</td>
-<td>2.48 (1.70)</td>
-<td>7.61 (2.67)</td>
-<td>6.31 (2.09)</td>
-<td>6.20 (2.14)</td>
-<td>4.02 (2.61)</td>
-<td>4.41 (2.79)</td>
-<td>5.77 (2.79)</td>
-</tr>
-<tr>
-<td class='rowlabel'>Median [Min, Max]</td>
-<td>2.00 [0.00, 7.00]</td>
-<td>2.00 [0.00, 7.00]</td>
-<td>8.00 [1.00, 13.0]</td>
-<td>6.00 [3.00, 13.0]</td>
-<td>6.00 [3.00, 13.0]</td>
-<td>4.00 [0.00, 10.0]</td>
-<td>5.00 [0.00, 13.0]</td>
-<td>6.00 [0.00, 13.0]</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Missing</td>
-<td class='lastrow'>12 (4.1%)</td>
-<td class='lastrow'>0 (0%)</td>
-<td class='lastrow'>112 (10.7%)</td>
-<td class='lastrow'>84 (5.8%)</td>
-<td class='lastrow'>40 (4.2%)</td>
-<td class='lastrow'>12 (6.4%)</td>
-<td class='lastrow'>20 (4.4%)</td>
-<td class='lastrow'>280 (6.0%)</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>factor(IMIDO)</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>0</td>
-<td>263 (88.9%)</td>
-<td>294 (90.7%)</td>
-<td>436 (41.8%)</td>
-<td>927 (63.8%)</td>
-<td>789 (83.2%)</td>
-<td>126 (67.0%)</td>
-<td>329 (72.8%)</td>
-<td>3164 (67.3%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>1</td>
-<td>29 (9.8%)</td>
-<td>29 (9.0%)</td>
-<td>255 (24.4%)</td>
-<td>492 (33.9%)</td>
-<td>136 (14.3%)</td>
-<td>47 (25.0%)</td>
-<td>90 (19.9%)</td>
-<td>1078 (22.9%)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Missing</td>
-<td class='lastrow'>4 (1.4%)</td>
-<td class='lastrow'>1 (0.3%)</td>
-<td class='lastrow'>353 (33.8%)</td>
-<td class='lastrow'>33 (2.3%)</td>
-<td class='lastrow'>23 (2.4%)</td>
-<td class='lastrow'>15 (8.0%)</td>
-<td class='lastrow'>33 (7.3%)</td>
-<td class='lastrow'>462 (9.8%)</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>factor(IMIPC)</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>0</td>
-<td>277 (93.6%)</td>
-<td>308 (95.1%)</td>
-<td>638 (61.1%)</td>
-<td>839 (57.8%)</td>
-<td>656 (69.2%)</td>
-<td>147 (78.2%)</td>
-<td>347 (76.8%)</td>
-<td>3212 (68.3%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>1</td>
-<td>18 (6.1%)</td>
-<td>16 (4.9%)</td>
-<td>197 (18.9%)</td>
-<td>431 (29.7%)</td>
-<td>231 (24.4%)</td>
-<td>21 (11.2%)</td>
-<td>47 (10.4%)</td>
-<td>961 (20.4%)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Missing</td>
-<td class='lastrow'>1 (0.3%)</td>
-<td class='lastrow'>0 (0%)</td>
-<td class='lastrow'>209 (20.0%)</td>
-<td class='lastrow'>182 (12.5%)</td>
-<td class='lastrow'>61 (6.4%)</td>
-<td class='lastrow'>20 (10.6%)</td>
-<td class='lastrow'>58 (12.8%)</td>
-<td class='lastrow'>531 (11.3%)</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>factor(Cure)</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>0</td>
-<td>1 (0.3%)</td>
-<td>3 (0.9%)</td>
-<td>21 (2.0%)</td>
-<td>73 (5.0%)</td>
-<td>14 (1.5%)</td>
-<td>2 (1.1%)</td>
-<td>3 (0.7%)</td>
-<td>117 (2.5%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>1</td>
-<td>28 (9.5%)</td>
-<td>26 (8.0%)</td>
-<td>176 (16.9%)</td>
-<td>359 (24.7%)</td>
-<td>114 (12.0%)</td>
-<td>44 (23.4%)</td>
-<td>71 (15.7%)</td>
-<td>818 (17.4%)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Missing</td>
-<td class='lastrow'>267 (90.2%)</td>
-<td class='lastrow'>295 (91.0%)</td>
-<td class='lastrow'>847 (81.1%)</td>
-<td class='lastrow'>1020 (70.2%)</td>
-<td class='lastrow'>820 (86.5%)</td>
-<td class='lastrow'>142 (75.5%)</td>
-<td class='lastrow'>378 (83.6%)</td>
-<td class='lastrow'>3769 (80.1%)</td>
-</tr>
-<tr>
-<td class='rowlabel firstrow'><span class='varlabel'>factor(NewIMI)</span></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-<td class='firstrow'></td>
-</tr>
-<tr>
-<td class='rowlabel'>0</td>
-<td>274 (92.6%)</td>
-<td>310 (95.7%)</td>
-<td>444 (42.5%)</td>
-<td>882 (60.7%)</td>
-<td>654 (69.0%)</td>
-<td>141 (75.0%)</td>
-<td>325 (71.9%)</td>
-<td>3030 (64.4%)</td>
-</tr>
-<tr>
-<td class='rowlabel'>1</td>
-<td>17 (5.7%)</td>
-<td>13 (4.0%)</td>
-<td>107 (10.2%)</td>
-<td>360 (24.8%)</td>
-<td>213 (22.5%)</td>
-<td>15 (8.0%)</td>
-<td>39 (8.6%)</td>
-<td>764 (16.2%)</td>
-</tr>
-<tr>
-<td class='rowlabel lastrow'>Missing</td>
-<td class='lastrow'>5 (1.7%)</td>
-<td class='lastrow'>1 (0.3%)</td>
-<td class='lastrow'>493 (47.2%)</td>
-<td class='lastrow'>210 (14.5%)</td>
-<td class='lastrow'>81 (8.5%)</td>
-<td class='lastrow'>32 (17.0%)</td>
-<td class='lastrow'>88 (19.5%)</td>
-<td class='lastrow'>910 (19.3%)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><br> <br></p>
-</div>
-<div id="steps-1-2-of-model-building-were-conducted-in-r" class="section level2">
-<h2>Steps 1-2 of model building were conducted in R</h2>
-<p><br> <br> <br></p>
-</div>
-</div>
-<div id="outcome-1-cure" class="section level1">
-<h1>Outcome 1: Cure</h1>
-<pre class="r"><code>library(gmodels)
-CrossTable(SDCTQTR$Tx,SDCTQTR$Cure,prop.c=FALSE,prop.t=FALSE,prop.chisq = FALSE)</code></pre>
-<pre><code>## 
-##  
-##    Cell Contents
-## |-------------------------|
-## |                       N |
-## |           N / Row Total |
-## |-------------------------|
-## 
-##  
-## Total Observations in Table:  935 
-## 
-##  
-##              | SDCTQTR$Cure 
-##   SDCTQTR$Tx |         0 |         1 | Row Total | 
-## -------------|-----------|-----------|-----------|
-##            0 |        40 |       263 |       303 | 
-##              |     0.132 |     0.868 |     0.324 | 
-## -------------|-----------|-----------|-----------|
-##            1 |        41 |       288 |       329 | 
-##              |     0.125 |     0.875 |     0.352 | 
-## -------------|-----------|-----------|-----------|
-##            2 |        36 |       267 |       303 | 
-##              |     0.119 |     0.881 |     0.324 | 
-## -------------|-----------|-----------|-----------|
-## Column Total |       117 |       818 |       935 | 
-## -------------|-----------|-----------|-----------|
-## 
-## </code></pre>
-<div id="logistic-regression-model-for-dry-period-cure" class="section level2">
-<h2>Logistic regression model for dry period cure</h2>
-</div>
-<div id="model-building-plan" class="section level2">
-<h2>Model building plan</h2>
-<p>Model type: Logistic regression with mixed effects (generalized linear mixed model with binomial family / logit link).</p>
-<p>Step 1: Identify potential confouders using a directed acyclic graph (DAG)</p>
-<p>Step 2: Identify correlated variables using pearson and kendalls correlation coefficients</p>
-<p>Step 3: Create model with all potential confounders</p>
-<p>Step 4: Investigate potential effect measure modification</p>
-<p>Step 5: Remove unneccesary covariates in backwards stepwise fashion using 10% rule (i.e. if odds ratio for algorithm or culture changes by &gt;10% after removing the covariate, the covariate is retained in the model)</p>
-<p>Step 6: Report final model</p>
-<div id="step-1-dag" class="section level3">
-<h3>Step 1: DAG</h3>
-<p>This is used to identify variables that could be confounders if they are not balanced between treatment groups.</p>
-<pre class="r"><code>library(DiagrammeR)
-mermaid(&quot;graph LR
-        T(Treatment)--&gt;U(Cure)
-        A(Age)--&gt;T
-        P(Parity)--&gt;T
-        M(Yield at dry-off)--&gt;T
-        S(SCC during prev lactation)--&gt;T
-        C(CM in prev lact)--&gt;T
-        D(DIM at dry off) --&gt; T
-        K(DIM at post calving sample) --&gt; T
-        D--&gt;M
-        D--&gt;S
-        D--&gt;U
-        K--&gt;U
-        A--&gt;U
-        P--&gt;U
-        M--&gt;U
-        S--&gt;U
-        C--&gt;U
-        C--&gt;M
-        P--&gt;C
-        P--&gt;S
-        P--&gt;M
-        A--&gt;P
-        A--&gt;C
-        A--&gt;S
-        A--&gt;M
-        M--&gt;S
-        C--&gt;S
+<br>
+<br>
+
+## Inspect Data 
+
+```{r}
+#summarytools::dfSummary(Baseline, style='grid')
+
+print(summarytools::dfSummary(Baseline, valid.col=FALSE,graph.magnif=0.5,varnumbers=F,style="grid"))
+
+```
+<br>
+<br>
+
+## Compare treatment groups at baseline
+
+```{r}
+table1::table1(~ factor(FARMID) + Spectramast + Age + Parity + factor(IMIDO) + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM | Tx, data=SDCTQTR,topclass="Rtable1-grid")
+```
+
+<br>
+<br>
+<br>
+
+## Compare herds
+
+```{r}
+table1::table1(~ Age + Parity  + DOSCC + DOMY + DODIM + PrevCM + PrevSCCHI + DPlength + PCSampDIM + factor(IMIDO) + factor(IMIPC) + factor(Cure) + factor(NewIMI) | factor(FARMID), data=SDCTQTR,topclass="Rtable1-grid")
+```
+
+<br>
+<br>
+
+## Steps 1-2 of model building were conducted in R 
+
+<br>
+<br>
+<br>
+
+# Outcome 1: Cure
+
+```{r}
+library(gmodels)
+CrossTable(SDCTQTR$Tx,SDCTQTR$Cure,prop.c=FALSE,prop.t=FALSE,prop.chisq = FALSE)
+
+```
+
+## Logistic regression model for dry period cure
+## Model building plan
+
+Model type: Logistic regression with mixed effects (generalized linear mixed model with binomial family / logit link).  
+
+Step 1: Identify potential confouders using a directed acyclic graph (DAG)
+
+Step 2: Identify correlated variables using pearson and kendalls correlation coefficients
+
+Step 3: Create model with all potential confounders
+
+Step 4: Investigate potential effect measure modification
+
+Step 5: Remove unneccesary covariates in backwards stepwise fashion using 10% rule (i.e. if odds ratio for algorithm or culture changes by >10% after removing the covariate, the covariate is retained in the model)
+
+Step 6: Report final model
+
+### Step 1: DAG
+This is used to identify variables that could be confounders if they are not balanced between treatment groups. 
+
+
+```{r}
+library(DiagrammeR)
+mermaid("graph LR
+        T(Treatment)-->U(Cure)
+        A(Age)-->T
+        P(Parity)-->T
+        M(Yield at dry-off)-->T
+        S(SCC during prev lactation)-->T
+        C(CM in prev lact)-->T
+        D(DIM at dry off) --> T
+        K(DIM at post calving sample) --> T
+        D-->M
+        D-->S
+        D-->U
+        K-->U
+        A-->U
+        P-->U
+        M-->U
+        S-->U
+        C-->U
+        C-->M
+        P-->C
+        P-->S
+        P-->M
+        A-->P
+        A-->C
+        A-->S
+        A-->M
+        M-->S
+        C-->S
 style D fill:#FFFFFF, stroke-width:0px
 style K fill:#FFFFFF, stroke-width:0px
 style A fill:#FFFFFF, stroke-width:0px
@@ -1596,61 +158,72 @@ style A fill:#FFFFFF, stroke-width:0px
         style C fill:#FFFFFF, stroke-width:0px
         style I fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
-        &quot;)</code></pre>
-<div id="htmlwidget-848a01cd992e65b272c6" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-848a01cd992e65b272c6">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(Cure)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> T\n        K(DIM at post calving sample) --> T\n        D-->M\n        D-->S\n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
-<p>According to this DAG, I may need to control for the following variables.</p>
-<p>Parity [“Parity”] or Age [“Age”] &lt;- likely to correlated</p>
-<p>Yield at most recent test before dry off [“DOMY”]</p>
-<p>Somatic cell count at last herd test during previous lactation [“DOSCC” or “PrevSCCHi”] &lt;- likely to be correlated</p>
-<p>Clinical mastitis in previous lactation [“PrevCM”]</p>
-<p>Days in milk at dry-off [“DODIM”]</p>
-<p>Days in milk at post-calving sample [“PCSampDIM”]</p>
-<p><br> <br> <br> <br></p>
-</div>
-<div id="step-2-identify-correlated-covariates" class="section level3">
-<h3>Step 2: Identify correlated covariates</h3>
-<p>Pearson correlation matrix among potential predictors</p>
-<pre class="r"><code>cor &lt;- Baseline[, c(6,7,9,10,11,13,14,15)]
-cor$Parity &lt;- as.numeric(cor$Parity)
+        ")
+```
+
+
+
+
+
+
+
+According to this DAG, I may need to control for the following variables.
+
+Parity ["Parity"] or Age ["Age"] <- likely to correlated
+
+Yield at most recent test before dry off ["DOMY"]
+
+Somatic cell count at last herd test during previous lactation ["DOSCC" or "PrevSCCHi"] <- likely to be correlated
+
+Clinical mastitis in previous lactation ["PrevCM"]
+
+Days in milk at dry-off ["DODIM"]
+
+Days in milk at post-calving sample ["PCSampDIM"]
+
+<br>
+<br>
+<br>
+<br>
+
+### Step 2: Identify correlated covariates
+
+Pearson correlation matrix among potential predictors
+```{r}
+cor <- Baseline[, c(6,7,9,10,11,13,14,15)]
+cor$Parity <- as.numeric(cor$Parity)
 #corrplot(cor)
-cor &lt;- cor(cor, use = &quot;complete.obs&quot;)
-round(cor, 2)</code></pre>
-<pre><code>##             Age Parity DOSCC  DOMY DODIM PrevSCCHI DPlength PCSampDIM
-## Age        1.00   0.90  0.28 -0.12  0.13      0.22    -0.09     -0.01
-## Parity     0.90   1.00  0.29 -0.11  0.02      0.20    -0.12     -0.01
-## DOSCC      0.28   0.29  1.00 -0.44  0.12      0.63    -0.06      0.03
-## DOMY      -0.12  -0.11 -0.44  1.00 -0.22     -0.31    -0.02     -0.01
-## DODIM      0.13   0.02  0.12 -0.22  1.00      0.18    -0.04     -0.08
-## PrevSCCHI  0.22   0.20  0.63 -0.31  0.18      1.00    -0.06      0.03
-## DPlength  -0.09  -0.12 -0.06 -0.02 -0.04     -0.06     1.00      0.12
-## PCSampDIM -0.01  -0.01  0.03 -0.01 -0.08      0.03     0.12      1.00</code></pre>
-<pre class="r"><code>cor &lt;- Baseline[, c(6,7,9,10,11,13,14,15)]
-cor$Parity &lt;- as.numeric(cor$Parity)
-cor &lt;- cor(cor, use = &quot;complete.obs&quot;, method=&quot;kendal&quot;)
-round(cor, 2)</code></pre>
-<pre><code>##             Age Parity DOSCC  DOMY DODIM PrevSCCHI DPlength PCSampDIM
-## Age        1.00   0.81  0.23 -0.09  0.16      0.17    -0.10      0.00
-## Parity     0.81   1.00  0.26 -0.10  0.03      0.16    -0.12     -0.01
-## DOSCC      0.23   0.26  1.00 -0.27  0.06      0.48    -0.07      0.02
-## DOMY      -0.09  -0.10 -0.27  1.00 -0.12     -0.20     0.03      0.00
-## DODIM      0.16   0.03  0.06 -0.12  1.00      0.12    -0.09     -0.10
-## PrevSCCHI  0.17   0.16  0.48 -0.20  0.12      1.00    -0.06      0.03
-## DPlength  -0.10  -0.12 -0.07  0.03 -0.09     -0.06     1.00      0.08
-## PCSampDIM  0.00  -0.01  0.02  0.00 -0.10      0.03     0.08      1.00</code></pre>
-<p>Age and Parity highly correlated as expected. Will only offer parity.</p>
-<p>Previous lactation peak SCC is moderately correlated with SCC at last herd test (DOSCC). Will only offer DOSCC.</p>
-<p><br> <br> <br> <br></p>
-</div>
-<div id="steps-3-to-6-conducted-in-stata-log-file-below" class="section level3">
-<h3>Steps 3 to 6 conducted in STATA (log file below)</h3>
-<pre class="r"><code>----------------------------------------------------------------------------------------------------------------
-      name:  &lt;unnamed&gt;
+cor <- cor(cor, use = "complete.obs")
+round(cor, 2)
+```
+
+```{r}
+cor <- Baseline[, c(6,7,9,10,11,13,14,15)]
+cor$Parity <- as.numeric(cor$Parity)
+cor <- cor(cor, use = "complete.obs", method="kendal")
+round(cor, 2)
+```
+
+Age and Parity highly correlated as expected.  Will only offer parity. 
+
+Previous lactation peak SCC is moderately correlated with SCC at last herd test (DOSCC). Will only offer DOSCC. 
+
+<br>
+<br>
+<br>
+<br>
+
+
+### Steps 3 to 6 conducted in STATA (log file below)
+
+```{r, eval = FALSE}
+----------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
        log:  /Users/SamRowe1/Dropbox/R backup/SDCT - R/SDCT QTR LOG.smcl
   log type:  smcl
  opened on:   2 Jul 2019, 12:21:05
 
-. do &quot;/var/folders/9d/jztlcdt119jcdw9bmltvxmd40000gp/T//SD17867.000000&quot;
+. do "/var/folders/9d/jztlcdt119jcdw9bmltvxmd40000gp/T//SD17867.000000"
 
 . 
 . *****************************
@@ -1702,9 +275,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(8)      =       3.56
-Log likelihood =  -343.5297                     Prob &gt; chi2       =     0.8945
+Log likelihood =  -343.5297                     Prob > chi2       =     0.8945
 ------------------------------------------------------------------------------
-        Cure |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .0630215   .2953295     0.21   0.831    -.5158137    .6418567
@@ -1723,10 +296,10 @@ Log likelihood =  -343.5297                     Prob &gt; chi2       =     0.894
 FARMID       |
    var(_cons)|   .1813986    .197816                      .0213991    1.537706
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   1.197882   .6767427                      .3958479    3.624932
 ------------------------------------------------------------------------------
-LR test vs. logistic model: chi2(2) = 11.86               Prob &gt; chi2 = 0.0027
+LR test vs. logistic model: chi2(2) = 11.86               Prob > chi2 = 0.0027
 
 Note: LR test is conservative and provided only for reference.
 
@@ -1795,9 +368,9 @@ Group variable:           CowID                 Number of groups  =        505
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(19)     =       9.81
-Log likelihood =  -328.4066                     Prob &gt; chi2       =     0.9575
+Log likelihood =  -328.4066                     Prob > chi2       =     0.9575
 ------------------------------------------------------------------------------
-        Cure |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |  -.6153327   .7954483    -0.77   0.439    -2.174383    .9437174
@@ -1842,7 +415,7 @@ Log likelihood =  -328.4066                     Prob &gt; chi2       =     0.957
 CowID        |
    var(_cons)|    .993516   .6029097                      .3024321    3.263787
 ------------------------------------------------------------------------------
-LR test vs. logistic model: chibar2(01) = 4.87        Prob &gt;= chibar2 = 0.0137
+LR test vs. logistic model: chibar2(01) = 4.87        Prob >= chibar2 = 0.0137
 
 . testparm Tx#FARMID
 
@@ -1853,7 +426,7 @@ LR test vs. logistic model: chibar2(01) = 4.87        Prob &gt;= chibar2 = 0.013
  ( 5)  [Cure]3.Tx#4.FARMID = 0
 
            chi2(  5) =    1.51
-         Prob &gt; chi2 =    0.9119
+         Prob > chi2 =    0.9119
 
 . 
 . *Step 4b: Tx: Parity
@@ -1896,9 +469,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(13)     =      11.83
-Log likelihood = -338.78946                     Prob &gt; chi2       =     0.5416
+Log likelihood = -338.78946                     Prob > chi2       =     0.5416
 ------------------------------------------------------------------------------
-        Cure |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .2315985   .4318339     0.54   0.592    -.6147805    1.077977
@@ -1926,10 +499,10 @@ Log likelihood = -338.78946                     Prob &gt; chi2       =     0.541
 FARMID       |
    var(_cons)|    .195338   .1995793                      .0263696    1.447006
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .9865625    .635185                      .2793123    3.484651
 ------------------------------------------------------------------------------
-LR test vs. logistic model: chi2(2) = 11.25               Prob &gt; chi2 = 0.0036
+LR test vs. logistic model: chi2(2) = 11.25               Prob > chi2 = 0.0036
 
 Note: LR test is conservative and provided only for reference.
 
@@ -1941,7 +514,7 @@ Note: LR test is conservative and provided only for reference.
  ( 4)  [Cure]3.Tx#3.Parity = 0
 
            chi2(  4) =    7.40
-         Prob &gt; chi2 =    0.1161
+         Prob > chi2 =    0.1161
 
 . 
 . *Step 4c: Tx:PrevCM
@@ -1983,9 +556,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(10)     =       5.81
-Log likelihood = -342.11516                     Prob &gt; chi2       =     0.8306
+Log likelihood = -342.11516                     Prob > chi2       =     0.8306
 ------------------------------------------------------------------------------
-        Cure |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |  -.0080293   .3219444    -0.02   0.980    -.6390287    .6229702
@@ -2008,10 +581,10 @@ Log likelihood = -342.11516                     Prob &gt; chi2       =     0.830
 FARMID       |
    var(_cons)|   .1782429   .1966366                      .0205103    1.549006
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   1.236526   .6840638                       .418125    3.656791
 ------------------------------------------------------------------------------
-LR test vs. logistic model: chi2(2) = 11.89               Prob &gt; chi2 = 0.0026
+LR test vs. logistic model: chi2(2) = 11.89               Prob > chi2 = 0.0026
 
 Note: LR test is conservative and provided only for reference.
 
@@ -2021,7 +594,7 @@ Note: LR test is conservative and provided only for reference.
  ( 2)  [Cure]3.Tx#2.PrevCM = 0
 
            chi2(  2) =    2.73
-         Prob &gt; chi2 =    0.2550
+         Prob > chi2 =    0.2550
 
 . 
 . *Step 5: Removing unnecessary covariates using 10% rule. Will do so in this order:
@@ -2029,7 +602,7 @@ Note: LR test is conservative and provided only for reference.
 . *DOMY DODIM PCSampDIM PrevCM DOSCC Parity
 . *Step 5a: full model
 . meglm Cure i.Tx i.Parity DOSCC DOMY i.PrevCM DODIM PCSampDIM || FARMID: || CowID:, or family(binomial) link(lo
-&gt; git)
+> git)
 
 Fitting fixed-effects model:
 
@@ -2068,9 +641,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(9)      =       5.02
-Log likelihood = -342.81116                     Prob &gt; chi2       =     0.8326
+Log likelihood = -342.81116                     Prob > chi2       =     0.8326
 ------------------------------------------------------------------------------
-        Cure | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.032489   .3042975     0.11   0.914     .5794515    1.839727
@@ -2092,12 +665,12 @@ Log likelihood = -342.81116                     Prob &gt; chi2       =     0.832
 FARMID       |
    var(_cons)|   .1867491   .1969007                      .0236475    1.474793
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   1.129688   .6638476                      .3570754    3.574019
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 11.88               Prob &gt; chi2 = 0.0026
+LR test vs. logistic model: chi2(2) = 11.88               Prob > chi2 = 0.0026
 
 Note: LR test is conservative and provided only for reference.
 
@@ -2142,9 +715,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(8)      =       4.96
-Log likelihood = -342.85452                     Prob &gt; chi2       =     0.7614
+Log likelihood = -342.85452                     Prob > chi2       =     0.7614
 ------------------------------------------------------------------------------
-        Cure | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.031242   .3033449     0.10   0.917     .5793958    1.835463
@@ -2165,16 +738,16 @@ Log likelihood = -342.85452                     Prob &gt; chi2       =     0.761
 FARMID       |
    var(_cons)|   .1926407   .1981272                      .0256628     1.44608
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   1.117709   .6609648                      .3507235    3.561989
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 12.55               Prob &gt; chi2 = 0.0019
+LR test vs. logistic model: chi2(2) = 12.55               Prob > chi2 = 0.0019
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. DOMY stays out
+. *Changed by <10%. DOMY stays out
 . 
 . *Step 5c: remove DODIM
 . meglm Cure i.Tx i.Parity DOSCC i.PrevCM PCSampDIM || FARMID: || CowID:, or family(binomial) link(logit)
@@ -2216,9 +789,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(7)      =       4.13
-Log likelihood = -343.26029                     Prob &gt; chi2       =     0.7651
+Log likelihood = -343.26029                     Prob > chi2       =     0.7651
 ------------------------------------------------------------------------------
-        Cure | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.006052   .2956315     0.02   0.984     .5655774    1.789569
@@ -2238,16 +811,16 @@ Log likelihood = -343.26029                     Prob &gt; chi2       =     0.765
 FARMID       |
    var(_cons)|   .1919828   .1967903                      .0257481    1.431459
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   1.147467    .666526                      .3675407     3.58241
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 12.85               Prob &gt; chi2 = 0.0016
+LR test vs. logistic model: chi2(2) = 12.85               Prob > chi2 = 0.0016
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. DODIM stays out
+. *Changed by <10%. DODIM stays out
 . 
 . *Step 5d: remove PCSampDIM
 . meglm Cure i.Tx i.Parity DOSCC i.PrevCM || FARMID: || CowID:, or family(binomial) link(logit)
@@ -2289,9 +862,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(6)      =       3.85
-Log likelihood = -343.51816                     Prob &gt; chi2       =     0.6963
+Log likelihood = -343.51816                     Prob > chi2       =     0.6963
 ------------------------------------------------------------------------------
-        Cure | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |     1.0172   .2969191     0.06   0.953       .57404    1.802482
@@ -2310,16 +883,16 @@ Log likelihood = -343.51816                     Prob &gt; chi2       =     0.696
 FARMID       |
    var(_cons)|    .212114   .2119145                      .0299342     1.50304
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   1.133847   .6653042                      .3590023     3.58106
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 13.23               Prob &gt; chi2 = 0.0013
+LR test vs. logistic model: chi2(2) = 13.23               Prob > chi2 = 0.0013
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. PCSampDIM stays out
+. *Changed by <10%. PCSampDIM stays out
 . 
 . *Step 5e: remove PrevCM
 . meglm Cure i.Tx i.Parity DOSCC || FARMID: || CowID:, or family(binomial) link(logit)
@@ -2360,9 +933,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(5)      =       2.11
-Log likelihood = -344.42989                     Prob &gt; chi2       =     0.8341
+Log likelihood = -344.42989                     Prob > chi2       =     0.8341
 ------------------------------------------------------------------------------
-        Cure | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .9905228   .2902217    -0.03   0.974     .5577809    1.758998
@@ -2378,16 +951,16 @@ Log likelihood = -344.42989                     Prob &gt; chi2       =     0.834
 FARMID       |
    var(_cons)|   .2105352    .211072                      .0295089    1.502092
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   1.184413   .6728698                      .3889843    3.606403
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 13.69               Prob &gt; chi2 = 0.0011
+LR test vs. logistic model: chi2(2) = 13.69               Prob > chi2 = 0.0011
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. PrevCM stays out
+. *Changed by <10%. PrevCM stays out
 . 
 . *Step 5f: remove DOSCC
 . meglm Cure i.Tx i.Parity || FARMID: || CowID:, or family(binomial) link(logit)
@@ -2428,9 +1001,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(4)      =       1.62
-Log likelihood = -344.67848                     Prob &gt; chi2       =     0.8058
+Log likelihood = -344.67848                     Prob > chi2       =     0.8058
 ------------------------------------------------------------------------------
-        Cure | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .9944239   .2911706    -0.02   0.985      .560192     1.76525
@@ -2445,16 +1018,16 @@ Log likelihood = -344.67848                     Prob &gt; chi2       =     0.805
 FARMID       |
    var(_cons)|   .2148922   .2129964                      .0307984    1.499384
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   1.185891   .6733975                      .3896705    3.609042
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 14.12               Prob &gt; chi2 = 0.0009
+LR test vs. logistic model: chi2(2) = 14.12               Prob > chi2 = 0.0009
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. DOSCC stays out
+. *Changed by <10%. DOSCC stays out
 . 
 . *Step 5g: remove Parity
 . meglm Cure i.Tx || FARMID: || CowID:, or family(binomial) link(logit)
@@ -2495,9 +1068,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(2)      =       0.15
-Log likelihood = -345.39982                     Prob &gt; chi2       =     0.9260
+Log likelihood = -345.39982                     Prob > chi2       =     0.9260
 ------------------------------------------------------------------------------
-        Cure | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.026987   .3011334     0.09   0.928     .5780635    1.824545
@@ -2508,22 +1081,26 @@ Log likelihood = -345.39982                     Prob &gt; chi2       =     0.926
 FARMID       |
    var(_cons)|   .2096099   .2126392                      .0287018    1.530788
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|    1.24887   .6858433                      .4256592    3.664144
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 14.00               Prob &gt; chi2 = 0.0009
+LR test vs. logistic model: chi2(2) = 14.00               Prob > chi2 = 0.0009
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. Parity stays out</code></pre>
-<p><br> <br></p>
-</div>
-</div>
-<div id="final-model-imi-cure" class="section level2">
-<h2>Final Model: IMI cure</h2>
-<pre class="r"><code>. *Step 6: Report final model
+. *Changed by <10%. Parity stays out
+
+```
+
+<br>
+<br>
+
+## Final Model: IMI cure
+
+```{r, eval = FALSE}
+. *Step 6: Report final model
 . meglm Cure i.Tx || FARMID: || CowID:, or family(binomial) link(logit)
 
 Fitting fixed-effects model:
@@ -2562,9 +1139,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(2)      =       0.15
-Log likelihood = -345.39982                     Prob &gt; chi2       =     0.9260
+Log likelihood = -345.39982                     Prob > chi2       =     0.9260
 ------------------------------------------------------------------------------
-        Cure | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.026987   .3011334     0.09   0.928     .5780635    1.824545
@@ -2575,12 +1152,12 @@ Log likelihood = -345.39982                     Prob &gt; chi2       =     0.926
 FARMID       |
    var(_cons)|   .2096099   .2126392                      .0287018    1.530788
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|    1.24887   .6858433                      .4256592    3.664144
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 14.00               Prob &gt; chi2 = 0.0009
+LR test vs. logistic model: chi2(2) = 14.00               Prob > chi2 = 0.0009
 
 Note: LR test is conservative and provided only for reference.
 
@@ -2622,9 +1199,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(2)      =       0.15
-Log likelihood = -345.39982                     Prob &gt; chi2       =     0.9260
+Log likelihood = -345.39982                     Prob > chi2       =     0.9260
 ------------------------------------------------------------------------------
-        Cure |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .0266294   .2932202     0.09   0.928    -.5480716    .6013304
@@ -2635,10 +1212,10 @@ Log likelihood = -345.39982                     Prob &gt; chi2       =     0.926
 FARMID       |
    var(_cons)|   .2096099   .2126392                      .0287018    1.530788
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|    1.24887   .6858433                      .4256592    3.664144
 ------------------------------------------------------------------------------
-LR test vs. logistic model: chi2(2) = 14.00               Prob &gt; chi2 = 0.0009
+LR test vs. logistic model: chi2(2) = 14.00               Prob > chi2 = 0.0009
 
 Note: LR test is conservative and provided only for reference.
 
@@ -2651,7 +1228,7 @@ Expression   : Marginal predicted mean, predict()
 
 ------------------------------------------------------------------------------
              |            Delta-method
-             |     Margin   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+             |     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           0  |   .8968886   .0246228    36.43   0.000     .8486288    .9451485
@@ -2669,7 +1246,7 @@ dy/dx w.r.t. : 2.Tx 3.Tx
 
 ------------------------------------------------------------------------------
              |            Delta-method
-             |      dy/dx   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+             |      dy/dx   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .0021182   .0233467     0.09   0.928    -.0436405    .0478769
@@ -2717,19 +1294,19 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(0)      =          .
-Log likelihood = -345.47707                     Prob &gt; chi2       =          .
+Log likelihood = -345.47707                     Prob > chi2       =          .
 ------------------------------------------------------------------------------
-        Cure |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+        Cure |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
        _cons |   2.723899   .3540443     7.69   0.000     2.029985    3.417813
 -------------+----------------------------------------------------------------
 FARMID       |
    var(_cons)|    .211154   .2139055                      .0289938    1.537775
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   1.254913   .6866821                      .4293786    3.667641
 ------------------------------------------------------------------------------
-LR test vs. logistic model: chi2(2) = 14.09               Prob &gt; chi2 = 0.0009
+LR test vs. logistic model: chi2(2) = 14.09               Prob > chi2 = 0.0009
 
 Note: LR test is conservative and provided only for reference.
 
@@ -2742,90 +1319,75 @@ Intraclass correlation
 -----------------------------+------------------------------------------------
                       FARMID |    .044398    .042782      .0063969    .2510963
                 CowID|FARMID |   .3082605   .1076934      .1420787    .5452763
-------------------------------------------------------------------------------</code></pre>
-<p><br> <br></p>
-</div>
-</div>
-<div id="outcome-2-imi-at-calving" class="section level1">
-<h1>Outcome 2: IMI at Calving</h1>
-<pre class="r"><code>CrossTable(SDCTQTR$Tx,SDCTQTR$IMIPC,prop.c=FALSE,prop.t=FALSE,prop.chisq = FALSE)</code></pre>
-<pre><code>## 
-##  
-##    Cell Contents
-## |-------------------------|
-## |                       N |
-## |           N / Row Total |
-## |-------------------------|
-## 
-##  
-## Total Observations in Table:  4173 
-## 
-##  
-##              | SDCTQTR$IMIPC 
-##   SDCTQTR$Tx |         0 |         1 | Row Total | 
-## -------------|-----------|-----------|-----------|
-##            0 |      1075 |       317 |      1392 | 
-##              |     0.772 |     0.228 |     0.334 | 
-## -------------|-----------|-----------|-----------|
-##            1 |      1085 |       341 |      1426 | 
-##              |     0.761 |     0.239 |     0.342 | 
-## -------------|-----------|-----------|-----------|
-##            2 |      1052 |       303 |      1355 | 
-##              |     0.776 |     0.224 |     0.325 | 
-## -------------|-----------|-----------|-----------|
-## Column Total |      3212 |       961 |      4173 | 
-## -------------|-----------|-----------|-----------|
-## 
-## </code></pre>
-<div id="logistic-regression-model-for-imi-at-calving" class="section level2">
-<h2>Logistic regression model for IMI at calving</h2>
-</div>
-<div id="model-building-plan-1" class="section level2">
-<h2>Model building plan</h2>
-<p>Model type: Logistic regression with mixed effects (generalized linear mixed model with binomial family / logit link).</p>
-<p>Step 1: Identify potential confouders using a directed acyclic graph (DAG)</p>
-<p>Step 2: Create model with all potential confounders</p>
-<p>Step 3: Investigate potential effect measure modification</p>
-<p>Step 4: Remove unneccesary covariates in backwards stepwise fashion using 10% rule (i.e. if odds ratio for algorithm or culture changes by &gt;10% after removing the covariate, the covariate is retained in the model)</p>
-<p>Step 5: Report final model</p>
-<div id="step-1-dag-1" class="section level3">
-<h3>Step 1: DAG</h3>
-<p>This is used to identify variables that could be confounders if they are not balanced between treatment groups.</p>
-<pre class="r"><code>library(DiagrammeR)
-mermaid(&quot;graph LR
-        T(Treatment)--&gt;U(IMI at calving)
-        A(Age)--&gt;T
-        P(Parity)--&gt;T
-        M(Yield at dry-off)--&gt;T
-        S(SCC during prev lactation)--&gt;T
-        C(CM in prev lact)--&gt;T
-        D(DIM at dry off) --&gt; M
-        I(IMI at dry off) --&gt; T
-        K(DIM at post calving sample) --&gt; T
-        I--&gt;U
-        P--&gt;I
-        A--&gt;I
-        C--&gt;I
-        I--&gt;S
-        I--&gt;M
-        D--&gt;S
-        D--&gt;U
-        K--&gt;U
-        A--&gt;U
-        P--&gt;U
-        M--&gt;U
-        S--&gt;U
-        C--&gt;U
-        C--&gt;M
-        P--&gt;C
-        P--&gt;S
-        P--&gt;M
-        A--&gt;P
-        A--&gt;C
-        A--&gt;S
-        A--&gt;M
-        M--&gt;S
-        C--&gt;S
+------------------------------------------------------------------------------
+                  
+```
+
+<br>
+<br>
+
+
+# Outcome 2: IMI at Calving
+```{r}
+CrossTable(SDCTQTR$Tx,SDCTQTR$IMIPC,prop.c=FALSE,prop.t=FALSE,prop.chisq = FALSE)
+```
+## Logistic regression model for IMI at calving
+## Model building plan
+
+Model type: Logistic regression with mixed effects (generalized linear mixed model with binomial family / logit link).  
+
+Step 1: Identify potential confouders using a directed acyclic graph (DAG)
+
+Step 2: Create model with all potential confounders
+
+Step 3: Investigate potential effect measure modification
+
+Step 4: Remove unneccesary covariates in backwards stepwise fashion using 10% rule (i.e. if odds ratio for algorithm or culture changes by >10% after removing the covariate, the covariate is retained in the model)
+
+Step 5: Report final model
+
+### Step 1: DAG
+This is used to identify variables that could be confounders if they are not balanced between treatment groups. 
+
+
+
+
+```{r}
+library(DiagrammeR)
+mermaid("graph LR
+        T(Treatment)-->U(IMI at calving)
+        A(Age)-->T
+        P(Parity)-->T
+        M(Yield at dry-off)-->T
+        S(SCC during prev lactation)-->T
+        C(CM in prev lact)-->T
+        D(DIM at dry off) --> M
+        I(IMI at dry off) --> T
+        K(DIM at post calving sample) --> T
+        I-->U
+        P-->I
+        A-->I
+        C-->I
+        I-->S
+        I-->M
+        D-->S
+        D-->U
+        K-->U
+        A-->U
+        P-->U
+        M-->U
+        S-->U
+        C-->U
+        C-->M
+        P-->C
+        P-->S
+        P-->M
+        A-->P
+        A-->C
+        A-->S
+        A-->M
+        M-->S
+        C-->S
 style D fill:#FFFFFF, stroke-width:0px
 style K fill:#FFFFFF, stroke-width:0px
 style A fill:#FFFFFF, stroke-width:0px
@@ -2836,26 +1398,44 @@ style A fill:#FFFFFF, stroke-width:0px
         style C fill:#FFFFFF, stroke-width:0px
         style I fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
-        &quot;)</code></pre>
-<div id="htmlwidget-cdefb7ac945c0032ee8b" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cdefb7ac945c0032ee8b">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(IMI at calving)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> M\n        I(IMI at dry off) --> T\n        K(DIM at post calving sample) --> T\n        I-->U\n        P-->I\n        A-->I\n        C-->I\n        I-->S\n        I-->M\n        D-->S\n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
-<p>According to this DAG, I may need to control for the following variables.</p>
-<p>Parity [“Parity”] or Age [“Age”] &lt;- will use Parity</p>
-<p>Yield at most recent test before dry off [“DOMY”]</p>
-<p>Somatic cell count at last herd test during previous lactation [“DOSCC” or “PrevSCCHi”] &lt;- will use DOSCC</p>
-<p>Clinical mastitis in previous lactation [“PrevCM”]</p>
-<p>IMI at dry-off [“DOIMI”]</p>
-<p>Days in milk at dry-off [“DODIM”]</p>
-<p>Days in milk at post-calving sample [“PCSampDIM”]</p>
-<p><br> <br> <br> <br></p>
-</div>
-<div id="steps-2-to-5-done-in-stata-log-below" class="section level3">
-<h3>Steps 2 to 5 done in STATA (log below)</h3>
-<pre class="r"><code>. 
+        ")
+```
+
+
+
+
+According to this DAG, I may need to control for the following variables.
+
+Parity ["Parity"] or Age ["Age"] <- will use Parity
+
+Yield at most recent test before dry off ["DOMY"]
+
+Somatic cell count at last herd test during previous lactation ["DOSCC" or "PrevSCCHi"] <- will use DOSCC
+
+Clinical mastitis in previous lactation ["PrevCM"]
+
+IMI at dry-off ["DOIMI"]
+
+Days in milk at dry-off ["DODIM"]
+
+Days in milk at post-calving sample ["PCSampDIM"]
+
+<br>
+<br>
+<br>
+<br>
+
+### Steps 2 to 5 done in STATA (log below)
+
+
+```{r, eval = FALSE}
+
+
+. 
 . *Outcome 2: IMI at calving 
 . *Step 2: Create full model with all potential confounders
 . meglm IMIPC i.Tx Parity DOMY DOSCC PrevCM IMIDO DODIM PCSampDIM|| FARMID: || CowID:, or family(binomial) link(
-&gt; logit)
+> logit)
 
 Fitting fixed-effects model:
 
@@ -2892,9 +1472,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(9)      =      29.28
-Log likelihood =  -1870.969                     Prob &gt; chi2       =     0.0006
+Log likelihood =  -1870.969                     Prob > chi2       =     0.0006
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.064306   .1348285     0.49   0.623     .8302987    1.364264
@@ -2912,12 +1492,12 @@ Log likelihood =  -1870.969                     Prob &gt; chi2       =     0.000
 FARMID       |
    var(_cons)|   .5790281    .337259                      .1848891    1.813376
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .7491731   .1480878                      .5085416    1.103666
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 197.94              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 197.94              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
@@ -2927,7 +1507,7 @@ Note: LR test is conservative and provided only for reference.
 . 
 . *Tx: Farm
 . meglm IMIPC i.Tx##i.FARMID i.Parity DOMY DOSCC i.PrevCM i.IMIDO DODIM PCSampDIM|| CowID:, or family(binomial) 
-&gt; link(logit)
+> link(logit)
 
 Fitting fixed-effects model:
 
@@ -2963,9 +1543,9 @@ Group variable:           CowID                 Number of groups  =      1,020
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(28)     =     198.85
-Log likelihood = -1850.3279                     Prob &gt; chi2       =     0.0000
+Log likelihood = -1850.3279                     Prob > chi2       =     0.0000
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.563937    .948898     0.74   0.461     .4761725    5.136585
@@ -3012,7 +1592,7 @@ CowID        |
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chibar2(01) = 39.35       Prob &gt;= chibar2 = 0.0000
+LR test vs. logistic model: chibar2(01) = 39.35       Prob >= chibar2 = 0.0000
 
 . testparm Tx#FARMID
 
@@ -3030,12 +1610,12 @@ LR test vs. logistic model: chibar2(01) = 39.35       Prob &gt;= chibar2 = 0.000
  (12)  [IMIPC]3.Tx#7.FARMID = 0
 
            chi2( 12) =   15.80
-         Prob &gt; chi2 =    0.2006
+         Prob > chi2 =    0.2006
 
 . 
 . *Tx:Parity
 . meglm IMIPC i.Tx##i.Parity DOMY DOSCC i.PrevCM i.IMIDO DODIM PCSampDIM|| FARMID: || CowID:, or family(binomial
-&gt; ) link(logit)
+> ) link(logit)
 
 Fitting fixed-effects model:
 
@@ -3073,9 +1653,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(14)     =      45.25
-Log likelihood = -1863.0203                     Prob &gt; chi2       =     0.0000
+Log likelihood = -1863.0203                     Prob > chi2       =     0.0000
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .9549044   .1816876    -0.24   0.808     .6576632    1.386488
@@ -3104,12 +1684,12 @@ Log likelihood = -1863.0203                     Prob &gt; chi2       =     0.000
 FARMID       |
    var(_cons)|    .558679   .3252641                      .1784806    1.748774
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .6882053   .1440497                      .4566161    1.037253
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 191.72              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 191.72              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
@@ -3121,7 +1701,7 @@ Note: LR test is conservative and provided only for reference.
  ( 4)  [IMIPC]3.Tx#3.Parity = 0
 
            chi2(  4) =   15.63
-         Prob &gt; chi2 =    0.0036
+         Prob > chi2 =    0.0036
 
 . 
 . *Significant interaction
@@ -3135,7 +1715,7 @@ Expression   : Marginal predicted mean, predict()
 
 ------------------------------------------------------------------------------
              |            Delta-method
-             |     Margin   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+             |     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
    Tx#Parity |
         0#1  |   .1630162   .0381247     4.28   0.000     .0882932    .2377393
@@ -3150,14 +1730,14 @@ Expression   : Marginal predicted mean, predict()
 ------------------------------------------------------------------------------
 
 . *It appears that within Algorithm cows, the IMIPC risk is higher in 3rd or greater lactation cows than early l
-&gt; actation cows. The opposite was observed in the blanket group, where lact 3 cows had the lowest IMIPC risk. Gi
-&gt; ven the wide confidence intervals around these estimates, I will not report a stratified model. 
+> actation cows. The opposite was observed in the blanket group, where lact 3 cows had the lowest IMIPC risk. Gi
+> ven the wide confidence intervals around these estimates, I will not report a stratified model. 
 . 
 . *Decision: Use main effects model
 . 
 . *Tx:Parity
 . meglm IMIPC i.Tx##i.IMIDO i.Parity DOMY DOSCC i.PrevCM DODIM PCSampDIM|| FARMID: || CowID:, or family(binomial
-&gt; ) link(logit)
+> ) link(logit)
 
 Fitting fixed-effects model:
 
@@ -3194,9 +1774,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(12)     =      30.76
-Log likelihood = -1870.2418                     Prob &gt; chi2       =     0.0021
+Log likelihood = -1870.2418                     Prob > chi2       =     0.0021
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.120922   .1640263     0.78   0.435     .8414291    1.493251
@@ -3224,12 +1804,12 @@ Log likelihood = -1870.2418                     Prob &gt; chi2       =     0.002
 FARMID       |
    var(_cons)|   .5753079   .3351308                       .183677    1.801963
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .7431065   .1477216                      .5033167    1.097137
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 197.27              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 197.27              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
@@ -3239,7 +1819,7 @@ Note: LR test is conservative and provided only for reference.
  ( 2)  [IMIPC]3.Tx#1.IMIDO = 0
 
            chi2(  2) =    1.17
-         Prob &gt; chi2 =    0.5571
+         Prob > chi2 =    0.5571
 
 . 
 . *Step 4: Remove unnecessary covariates from the model using 10% rule
@@ -3248,7 +1828,7 @@ Note: LR test is conservative and provided only for reference.
 . 
 . *Step 4a: Full model
 . meglm IMIPC i.Tx i.IMIDO i.Parity DOMY DOSCC i.PrevCM DODIM PCSampDIM|| FARMID: || CowID:, or family(binomial)
-&gt;  link(logit)
+>  link(logit)
 
 Fitting fixed-effects model:
 
@@ -3285,9 +1865,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(10)     =      29.56
-Log likelihood = -1870.8266                     Prob &gt; chi2       =     0.0010
+Log likelihood = -1870.8266                     Prob > chi2       =     0.0010
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.068751   .1355891     0.52   0.600     .8334644    1.370458
@@ -3311,19 +1891,19 @@ Log likelihood = -1870.8266                     Prob &gt; chi2       =     0.001
 FARMID       |
    var(_cons)|   .5771543   .3361326                      .1843127    1.807294
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .7466678   .1479631                      .5063484    1.101046
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 198.19              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 198.19              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
 . 
 . *Step 4b: remove DODIM
 . meglm IMIPC i.Tx i.IMIDO i.Parity DOMY DOSCC i.PrevCM PCSampDIM|| FARMID: || CowID:, or family(binomial) link(
-&gt; logit)
+> logit)
 
 Fitting fixed-effects model:
 
@@ -3360,9 +1940,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(9)      =      26.84
-Log likelihood = -1872.2028                     Prob &gt; chi2       =     0.0015
+Log likelihood = -1872.2028                     Prob > chi2       =     0.0015
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.081468   .1373188     0.62   0.537      .843204    1.387057
@@ -3385,20 +1965,20 @@ Log likelihood = -1872.2028                     Prob &gt; chi2       =     0.001
 FARMID       |
    var(_cons)|   .5609821   .3271093                      .1789008     1.75908
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .7554017   .1486741                      .5136284    1.110982
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 197.70              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 197.70              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. DODIM stays out
+. *Changed by <10%. DODIM stays out
 . 
 . *Step 4c: remove DOMY
 . meglm IMIPC i.Tx i.IMIDO i.Parity DOSCC i.PrevCM PCSampDIM|| FARMID: || CowID:, or family(binomial) link(logit
-&gt; )
+> )
 
 Fitting fixed-effects model:
 
@@ -3436,9 +2016,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(8)      =      26.82
-Log likelihood = -1872.2177                     Prob &gt; chi2       =     0.0008
+Log likelihood = -1872.2177                     Prob > chi2       =     0.0008
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.082235   .1373363     0.62   0.533     .8439246    1.387841
@@ -3460,16 +2040,16 @@ Log likelihood = -1872.2177                     Prob &gt; chi2       =     0.000
 FARMID       |
    var(_cons)|   .5624046   .3278289                      .1794232    1.762866
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .7551785   .1486539                       .513445    1.110722
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 200.49              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 200.49              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. DOMY stays out
+. *Changed by <10%. DOMY stays out
 . 
 . *Step 4d: remove PCSampDIM
 . meglm IMIPC i.Tx i.IMIDO i.Parity DOSCC i.PrevCM || FARMID: || CowID:, or family(binomial) link(logit)
@@ -3510,9 +2090,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(7)      =      23.74
-Log likelihood = -1875.6945                     Prob &gt; chi2       =     0.0013
+Log likelihood = -1875.6945                     Prob > chi2       =     0.0013
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.071557   .1356024     0.55   0.585     .8361772    1.373196
@@ -3533,16 +2113,16 @@ Log likelihood = -1875.6945                     Prob &gt; chi2       =     0.001
 FARMID       |
    var(_cons)|   .6821897   .3879751                      .2237739      2.0797
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .7545164   .1487097                      .5127469    1.110285
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 256.44              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 256.44              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. PCSampdim stays out
+. *Changed by <10%. PCSampdim stays out
 . 
 . *Step 4e: remove Parity
 . meglm IMIPC i.Tx i.IMIDO DOSCC i.PrevCM || FARMID: || CowID:, or family(binomial) link(logit)
@@ -3583,9 +2163,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(5)      =      20.23
-Log likelihood = -1877.4705                     Prob &gt; chi2       =     0.0011
+Log likelihood = -1877.4705                     Prob > chi2       =     0.0011
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.060385   .1344509     0.46   0.644     .8270582    1.359538
@@ -3601,16 +2181,16 @@ Log likelihood = -1877.4705                     Prob &gt; chi2       =     0.001
 FARMID       |
    var(_cons)|   .6709123    .382098                        .21973    2.048529
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .7729361    .149883                      .5285473    1.130325
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 253.70              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 253.70              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. Parity stays out. 
+. *Changed by <10%. Parity stays out. 
 . 
 . *Step 4f: remove PrevCM
 . meglm IMIPC i.Tx i.IMIDO DOSCC || FARMID: || CowID:, or family(binomial) link(logit)
@@ -3651,9 +2231,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(4)      =      19.52
-Log likelihood =  -1877.837                     Prob &gt; chi2       =     0.0006
+Log likelihood =  -1877.837                     Prob > chi2       =     0.0006
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.059386   .1342875     0.46   0.649     .8263352    1.358164
@@ -3666,16 +2246,16 @@ Log likelihood =  -1877.837                     Prob &gt; chi2       =     0.000
 FARMID       |
    var(_cons)|   .6759702    .384812                      .2214935    2.062976
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .7725109   .1498084                      .5282461    1.129726
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 254.93              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 254.93              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. PrevCM stays out
+. *Changed by <10%. PrevCM stays out
 . 
 . *Step 4g: DOSCC
 . meglm IMIPC i.Tx i.IMIDO || FARMID: || CowID:, or family(binomial) link(logit)
@@ -3716,9 +2296,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(3)      =      15.12
-Log likelihood =  -1880.069                     Prob &gt; chi2       =     0.0017
+Log likelihood =  -1880.069                     Prob > chi2       =     0.0017
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.044838   .1326597     0.35   0.730     .8146571    1.340057
@@ -3730,16 +2310,16 @@ Log likelihood =  -1880.069                     Prob &gt; chi2       =     0.001
 FARMID       |
    var(_cons)|   .6990755   .3968672                      .2297706    2.126932
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|    .787457    .151022                       .540729    1.146764
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 270.12              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 270.12              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. DOSCC stays out
+. *Changed by <10%. DOSCC stays out
 . 
 . *Step 4h: IMIDO
 . meglm IMIPC i.Tx || FARMID: || CowID:, or family(binomial) link(logit)
@@ -3780,9 +2360,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(2)      =       0.30
-Log likelihood = -2103.8382                     Prob &gt; chi2       =     0.8588
+Log likelihood = -2103.8382                     Prob > chi2       =     0.8588
 ------------------------------------------------------------------------------
-       IMIPC | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.028108   .1224685     0.23   0.816     .8140355    1.298477
@@ -3793,22 +2373,28 @@ Log likelihood = -2103.8382                     Prob &gt; chi2       =     0.858
 FARMID       |
    var(_cons)|   .7402117   .4188413                      .2441811    2.243881
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .7458774   .1363842                      .5212242    1.067358
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 295.03              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 295.03              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. IMIDO stays out</code></pre>
-<p><br> <br></p>
-</div>
-</div>
-<div id="final-model-imi-post-calving" class="section level2">
-<h2>Final model: IMI post calving</h2>
-<pre class="r"><code>. *Report final model
+. *Changed by <10%. IMIDO stays out
+
+```
+
+<br>
+<br>
+
+## Final model: IMI post calving
+
+```{r, eval = FALSE}
+
+
+. *Report final model
 . meglm IMIPC i.Tx || FARMID: || CowID:, family(binomial) link(logit)
 
 Fitting fixed-effects model:
@@ -3847,9 +2433,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(2)      =       0.30
-Log likelihood = -2103.8382                     Prob &gt; chi2       =     0.8588
+Log likelihood = -2103.8382                     Prob > chi2       =     0.8588
 ------------------------------------------------------------------------------
-       IMIPC |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .0277202   .1191203     0.23   0.816    -.2057513    .2611917
@@ -3860,10 +2446,10 @@ Log likelihood = -2103.8382                     Prob &gt; chi2       =     0.858
 FARMID       |
    var(_cons)|   .7402117   .4188413                      .2441811    2.243881
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .7458774   .1363842                      .5212242    1.067358
 ------------------------------------------------------------------------------
-LR test vs. logistic model: chi2(2) = 295.03              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 295.03              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
@@ -3876,7 +2462,7 @@ Expression   : Marginal predicted mean, predict()
 
 ------------------------------------------------------------------------------
              |            Delta-method
-             |     Margin   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+             |     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           0  |   .1715523   .0413514     4.15   0.000      .090505    .2525996
@@ -3894,7 +2480,7 @@ dy/dx w.r.t. : 2.Tx 3.Tx
 
 ------------------------------------------------------------------------------
              |            Delta-method
-             |      dy/dx   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+             |      dy/dx   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .0032855   .0141263     0.23   0.816    -.0244015    .0309726
@@ -3942,19 +2528,19 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(0)      =          .
-Log likelihood = -2103.9905                     Prob &gt; chi2       =          .
+Log likelihood = -2103.9905                     Prob > chi2       =          .
 ------------------------------------------------------------------------------
-       IMIPC |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+       IMIPC |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
        _cons |  -1.991534   .3364834    -5.92   0.000    -2.651029   -1.332038
 -------------+----------------------------------------------------------------
 FARMID       |
    var(_cons)|   .7414414   .4195001                      .2446107    2.247388
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .7465621   .1363831                      .5218758    1.067984
 ------------------------------------------------------------------------------
-LR test vs. logistic model: chi2(2) = 295.74              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 295.74              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
@@ -3967,90 +2553,74 @@ Intraclass correlation
 -----------------------------+------------------------------------------------
                       FARMID |   .1551824   .0740752       .057219    .3573024
                 CowID|FARMID |   .3114365   .0645448      .2004738    .4493027
-------------------------------------------------------------------------------</code></pre>
-</div>
-</div>
-<div id="outcome-3-new-imi" class="section level1">
-<h1>Outcome 3: New IMI</h1>
-<pre class="r"><code>CrossTable(SDCTQTR$Tx,SDCTQTR$NewIMI,prop.c=FALSE,prop.t=FALSE,prop.chisq = FALSE)</code></pre>
-<pre><code>## 
-##  
-##    Cell Contents
-## |-------------------------|
-## |                       N |
-## |           N / Row Total |
-## |-------------------------|
-## 
-##  
-## Total Observations in Table:  3794 
-## 
-##  
-##              | SDCTQTR$NewIMI 
-##   SDCTQTR$Tx |         0 |         1 | Row Total | 
-## -------------|-----------|-----------|-----------|
-##            0 |      1009 |       246 |      1255 | 
-##              |     0.804 |     0.196 |     0.331 | 
-## -------------|-----------|-----------|-----------|
-##            1 |      1026 |       272 |      1298 | 
-##              |     0.790 |     0.210 |     0.342 | 
-## -------------|-----------|-----------|-----------|
-##            2 |       995 |       246 |      1241 | 
-##              |     0.802 |     0.198 |     0.327 | 
-## -------------|-----------|-----------|-----------|
-## Column Total |      3030 |       764 |      3794 | 
-## -------------|-----------|-----------|-----------|
-## 
-## </code></pre>
-<div id="logistic-regression-model-for-new-imi" class="section level2">
-<h2>Logistic regression model for new IMI</h2>
-</div>
-<div id="model-building-plan-2" class="section level2">
-<h2>Model building plan</h2>
-<p>Model type: Logistic regression with mixed effects (generalized linear mixed model with binomial family / logit link).</p>
-<p>Step 1: Identify potential confouders using a directed acyclic graph (DAG)</p>
-<p>Step 2: Create model with all potential confounders</p>
-<p>Step 3: Investigate potential effect measure modification</p>
-<p>Step 4: Remove unneccesary covariates in backwards stepwise fashion using 10% rule (i.e. if odds ratio for algorithm or culture changes by &gt;10% after removing the covariate, the covariate is retained in the model)</p>
-<p>Step 5: Report final model</p>
-<div id="step-1-dag-2" class="section level3">
-<h3>Step 1: DAG</h3>
-<p>This is used to identify variables that could be confounders if they are not balanced between treatment groups.</p>
-<pre class="r"><code>library(DiagrammeR)
-mermaid(&quot;graph LR
-        T(Treatment)--&gt;U(New IMI)
-        A(Age)--&gt;T
-        P(Parity)--&gt;T
-        M(Yield at dry-off)--&gt;T
-        S(SCC during prev lactation)--&gt;T
-        C(CM in prev lact)--&gt;T
-        D(DIM at dry off) --&gt; T
-        I(IMI at dry off) --&gt; T
-        K(DIM at post calving sample) --&gt; T
-        I--&gt;U
-        P--&gt;I
-        A--&gt;I
-        C--&gt;I
-        I--&gt;S
-        I--&gt;M
-        D--&gt;S
-        D--&gt;M        
-        D--&gt;U
-        K--&gt;U
-        A--&gt;U
-        P--&gt;U
-        M--&gt;U
-        S--&gt;U
-        C--&gt;U
-        C--&gt;M
-        P--&gt;C
-        P--&gt;S
-        P--&gt;M
-        A--&gt;P
-        A--&gt;C
-        A--&gt;S
-        A--&gt;M
-        M--&gt;S
-        C--&gt;S
+------------------------------------------------------------------------------
+```
+
+
+
+# Outcome 3: New IMI
+```{r}
+CrossTable(SDCTQTR$Tx,SDCTQTR$NewIMI,prop.c=FALSE,prop.t=FALSE,prop.chisq = FALSE)
+```
+
+## Logistic regression model for new IMI
+## Model building plan
+
+Model type: Logistic regression with mixed effects (generalized linear mixed model with binomial family / logit link).  
+
+Step 1: Identify potential confouders using a directed acyclic graph (DAG)
+
+Step 2: Create model with all potential confounders
+
+Step 3: Investigate potential effect measure modification
+
+Step 4: Remove unneccesary covariates in backwards stepwise fashion using 10% rule (i.e. if odds ratio for algorithm or culture changes by >10% after removing the covariate, the covariate is retained in the model)
+
+Step 5: Report final model
+
+### Step 1: DAG
+This is used to identify variables that could be confounders if they are not balanced between treatment groups. 
+
+
+
+
+```{r}
+library(DiagrammeR)
+mermaid("graph LR
+        T(Treatment)-->U(New IMI)
+        A(Age)-->T
+        P(Parity)-->T
+        M(Yield at dry-off)-->T
+        S(SCC during prev lactation)-->T
+        C(CM in prev lact)-->T
+        D(DIM at dry off) --> T
+        I(IMI at dry off) --> T
+        K(DIM at post calving sample) --> T
+        I-->U
+        P-->I
+        A-->I
+        C-->I
+        I-->S
+        I-->M
+        D-->S
+        D-->M        
+        D-->U
+        K-->U
+        A-->U
+        P-->U
+        M-->U
+        S-->U
+        C-->U
+        C-->M
+        P-->C
+        P-->S
+        P-->M
+        A-->P
+        A-->C
+        A-->S
+        A-->M
+        M-->S
+        C-->S
 style D fill:#FFFFFF, stroke-width:0px
 style K fill:#FFFFFF, stroke-width:0px
 style A fill:#FFFFFF, stroke-width:0px
@@ -4061,25 +2631,43 @@ style A fill:#FFFFFF, stroke-width:0px
         style C fill:#FFFFFF, stroke-width:0px
         style I fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
-        &quot;)</code></pre>
-<div id="htmlwidget-70f08ffd872c7b913f4e" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-70f08ffd872c7b913f4e">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(New IMI)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(DIM at dry off) --> T\n        I(IMI at dry off) --> T\n        K(DIM at post calving sample) --> T\n        I-->U\n        P-->I\n        A-->I\n        C-->I\n        I-->S\n        I-->M\n        D-->S\n        D-->M        \n        D-->U\n        K-->U\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\nstyle D fill:#FFFFFF, stroke-width:0px\nstyle K fill:#FFFFFF, stroke-width:0px\nstyle A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script>
-<p>According to this DAG, I may need to control for the following variables.</p>
-<p>Parity [“Parity”] or Age [“Age”] &lt;- will use Parity</p>
-<p>Yield at most recent test before dry off [“DOMY”]</p>
-<p>Somatic cell count at last herd test during previous lactation [“DOSCC” or “PrevSCCHi”] &lt;- will use DOSCC</p>
-<p>Clinical mastitis in previous lactation [“PrevCM”]</p>
-<p>IMI at dry-off [“DOIMI”]</p>
-<p>Days in milk at dry-off [“DODIM”]</p>
-<p>Days in milk at post-calving sample [“PCSampDIM”]</p>
-<p><br> <br> <br> <br></p>
-</div>
-<div id="steps-2-to-5-done-in-stata-log-below-1" class="section level3">
-<h3>Steps 2 to 5 done in STATA (log below)</h3>
-<pre class="r"><code>. *Outcome 3: New IMI
+        ")
+```
+
+
+
+
+
+According to this DAG, I may need to control for the following variables.
+
+Parity ["Parity"] or Age ["Age"] <- will use Parity
+
+Yield at most recent test before dry off ["DOMY"]
+
+Somatic cell count at last herd test during previous lactation ["DOSCC" or "PrevSCCHi"] <- will use DOSCC
+
+Clinical mastitis in previous lactation ["PrevCM"]
+
+IMI at dry-off ["DOIMI"]
+
+Days in milk at dry-off ["DODIM"]
+
+Days in milk at post-calving sample ["PCSampDIM"]
+
+<br>
+<br>
+<br>
+<br>
+
+
+### Steps 2 to 5 done in STATA (log below)
+
+```{r, eval = FALSE}
+
+. *Outcome 3: New IMI
 . *Step 2: Full model with possible covariates
 . meglm NewIMI i.Tx Parity DOMY DOSCC PrevCM IMIDO DODIM PCSampDIM|| FARMID: || CowID:, or family(binomial) link
-&gt; (logit)
+> (logit)
 
 Fitting fixed-effects model:
 
@@ -4117,9 +2705,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(9)      =      22.75
-Log likelihood = -1780.1959                     Prob &gt; chi2       =     0.0068
+Log likelihood = -1780.1959                     Prob > chi2       =     0.0068
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.067021   .1320534     0.52   0.600     .8371998    1.359931
@@ -4137,12 +2725,12 @@ Log likelihood = -1780.1959                     Prob &gt; chi2       =     0.006
 FARMID       |
    var(_cons)|   .5800246   .3402997                      .1836739    1.831662
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .5678001   .1358789                      .3552192    .9075998
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 156.96              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 156.96              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
@@ -4152,7 +2740,7 @@ Note: LR test is conservative and provided only for reference.
 . 
 . *Tx:FARMD
 . meglm NewIMI i.Tx##i.FARMID Parity DOMY DOSCC PrevCM IMIDO DODIM PCSampDIM || CowID:, or family(binomial) link
-&gt; (logit)
+> (logit)
 
 Fitting fixed-effects model:
 
@@ -4187,9 +2775,9 @@ Group variable:           CowID                 Number of groups  =      1,020
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(27)     =     167.25
-Log likelihood = -1759.0549                     Prob &gt; chi2       =     0.0000
+Log likelihood = -1759.0549                     Prob > chi2       =     0.0000
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.835406   1.120958     0.99   0.320      .554457    6.075698
@@ -4231,7 +2819,7 @@ CowID        |
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chibar2(01) = 23.75       Prob &gt;= chibar2 = 0.0000
+LR test vs. logistic model: chibar2(01) = 23.75       Prob >= chibar2 = 0.0000
 
 . testparm Tx#FARMID
 
@@ -4249,12 +2837,12 @@ LR test vs. logistic model: chibar2(01) = 23.75       Prob &gt;= chibar2 = 0.000
  (12)  [NewIMI]3.Tx#7.FARMID = 0
 
            chi2( 12) =   14.89
-         Prob &gt; chi2 =    0.2475
+         Prob > chi2 =    0.2475
 
 . 
 . *Tx:Parity
 . meglm NewIMI i.Tx##Parity DOMY DOSCC PrevCM IMIDO DODIM PCSampDIM|| FARMID: || CowID:, or family(binomial) lin
-&gt; k(logit)
+> k(logit)
 
 Fitting fixed-effects model:
 
@@ -4292,9 +2880,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(14)     =      36.60
-Log likelihood = -1773.3598                     Prob &gt; chi2       =     0.0008
+Log likelihood = -1773.3598                     Prob > chi2       =     0.0008
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .9976673   .1867289    -0.01   0.990     .6913057    1.439797
@@ -4321,12 +2909,12 @@ Log likelihood = -1773.3598                     Prob &gt; chi2       =     0.000
 FARMID       |
    var(_cons)|   .5619739   .3297342                      .1779425    1.774813
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .5203301    .132726                      .3156124    .8578349
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 152.51              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 152.51              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
@@ -4338,10 +2926,10 @@ Note: LR test is conservative and provided only for reference.
  ( 4)  [NewIMI]3.Tx#3.Parity = 0
 
            chi2(  4) =   13.64
-         Prob &gt; chi2 =    0.0086
+         Prob > chi2 =    0.0086
 
 . 
-. *P&lt;0.05. Will investigate further.
+. *P<0.05. Will investigate further.
 . margins Tx#Parity
 
 Predictive margins                              Number of obs     =      3,778
@@ -4351,7 +2939,7 @@ Expression   : Marginal predicted mean, predict()
 
 ------------------------------------------------------------------------------
              |            Delta-method
-             |     Margin   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+             |     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
    Tx#Parity |
         0#1  |   .1401822   .0349876     4.01   0.000     .0716077    .2087567
@@ -4367,13 +2955,13 @@ Expression   : Marginal predicted mean, predict()
 
 . 
 . *Similar pattern to last model, with 3rd and greater parity cows in the algorithm group being much higher than
-&gt;  other gropus (21% new IMI risk, compared 13% in other parities in algorithm group).  Again, it seems to be an
-&gt;  unnecessary complication to report stratified models in this situation, given that the 95% CI for the new IMI
-&gt;  risk in that group is very wide (12-31%). 
+>  other gropus (21% new IMI risk, compared 13% in other parities in algorithm group).  Again, it seems to be an
+>  unnecessary complication to report stratified models in this situation, given that the 95% CI for the new IMI
+>  risk in that group is very wide (12-31%). 
 . 
 . *Tx:IMIDO
 . meglm NewIMI i.Tx##i.IMIDO i.Parity DOMY DOSCC PrevCM DODIM PCSampDIM|| FARMID: || CowID:, or family(binomial)
-&gt;  link(logit)
+>  link(logit)
 
 Fitting fixed-effects model:
 
@@ -4411,9 +2999,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(12)     =      23.76
-Log likelihood = -1779.6553                     Prob &gt; chi2       =     0.0219
+Log likelihood = -1779.6553                     Prob > chi2       =     0.0219
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.112747   .1559613     0.76   0.446     .8454601    1.464536
@@ -4439,12 +3027,12 @@ Log likelihood = -1779.6553                     Prob &gt; chi2       =     0.021
 FARMID       |
    var(_cons)|   .5776476    .338999                       .182863    1.824737
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .5627969   .1355316                      .3510485    .9022697
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 156.25              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 156.25              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
@@ -4454,15 +3042,15 @@ Note: LR test is conservative and provided only for reference.
  ( 2)  [NewIMI]3.Tx#1.IMIDO = 0
 
            chi2(  2) =    1.04
-         Prob &gt; chi2 =    0.5934
+         Prob > chi2 =    0.5934
 
 . 
 . *Step 4: remove unnecessary covariates using 10% rule. I will remove in the following order: DODIM DOMY Parity
-&gt;  DOSCC PCSampDIM PrevCM IMIDO
+>  DOSCC PCSampDIM PrevCM IMIDO
 . 
 . *Step 4a: Full model
 . meglm NewIMI i.Tx i.IMIDO i.Parity DOMY DOSCC PrevCM DODIM PCSampDIM|| FARMID: || CowID:, or family(binomial) 
-&gt; link(logit)
+> link(logit)
 
 Fitting fixed-effects model:
 
@@ -4500,9 +3088,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(10)     =      22.78
-Log likelihood = -1780.1766                     Prob &gt; chi2       =     0.0116
+Log likelihood = -1780.1766                     Prob > chi2       =     0.0116
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |    1.06856   .1324597     0.53   0.593     .8380758    1.362432
@@ -4524,19 +3112,19 @@ Log likelihood = -1780.1766                     Prob &gt; chi2       =     0.011
 FARMID       |
    var(_cons)|   .5793346   .3398983                      .1834533    1.829504
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .5670989   .1358741                      .3545807    .9069899
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 156.97              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 156.97              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
 . 
 . *Step 4b: Removed DODIM
 . meglm NewIMI i.Tx i.IMIDO i.Parity DOMY DOSCC PrevCM PCSampDIM|| FARMID: || CowID:, or family(binomial) link(l
-&gt; ogit)
+> ogit)
 
 Fitting fixed-effects model:
 
@@ -4574,9 +3162,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(9)      =      20.20
-Log likelihood =  -1781.475                     Prob &gt; chi2       =     0.0167
+Log likelihood =  -1781.475                     Prob > chi2       =     0.0167
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.080621   .1341344     0.62   0.532      .847259    1.378258
@@ -4597,16 +3185,16 @@ Log likelihood =  -1781.475                     Prob &gt; chi2       =     0.016
 FARMID       |
    var(_cons)|   .5640013   .3314323                      .1782692    1.784366
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .5768512   .1366667                      .3625755    .9177602
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 156.32              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 156.32              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. DODIM stays out
+. *Changed by <10%. DODIM stays out
 . 
 . *Step 4c: Removed DOMY
 . meglm NewIMI i.Tx i.IMIDO i.Parity DOSCC PrevCM PCSampDIM|| FARMID: || CowID:, or family(binomial) link(logit)
@@ -4648,9 +3236,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(8)      =      20.19
-Log likelihood = -1781.4767                     Prob &gt; chi2       =     0.0096
+Log likelihood = -1781.4767                     Prob > chi2       =     0.0096
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.080339   .1340172     0.62   0.533     .8471637    1.377693
@@ -4670,16 +3258,16 @@ Log likelihood = -1781.4767                     Prob &gt; chi2       =     0.009
 FARMID       |
    var(_cons)|   .5635068   .3310508                      .1781692    1.782239
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .5769498   .1366686                       .362664      .91785
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 158.07              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 158.07              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. DOMY stays out
+. *Changed by <10%. DOMY stays out
 . 
 . *Step 4d: Removed Parity
 . meglm NewIMI i.Tx i.IMIDO DOSCC PrevCM PCSampDIM|| FARMID: || CowID:, or family(binomial) link(logit)
@@ -4720,9 +3308,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(6)      =      16.02
-Log likelihood = -1783.5819                     Prob &gt; chi2       =     0.0137
+Log likelihood = -1783.5819                     Prob > chi2       =     0.0137
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.070017   .1331255     0.54   0.586     .8384728    1.365502
@@ -4737,16 +3325,16 @@ Log likelihood = -1783.5819                     Prob &gt; chi2       =     0.013
 FARMID       |
    var(_cons)|   .5542098   .3263943                      .1747313    1.757833
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .5987475   .1381081                      .3809817    .9409863
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 156.09              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 156.09              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. Parity stays out
+. *Changed by <10%. Parity stays out
 . 
 . *Step 4e: Removed DOSCC
 . meglm NewIMI i.Tx i.IMIDO PrevCM PCSampDIM|| FARMID: || CowID:, or family(binomial) link(logit)
@@ -4787,9 +3375,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(5)      =      12.64
-Log likelihood = -1785.2913                     Prob &gt; chi2       =     0.0270
+Log likelihood = -1785.2913                     Prob > chi2       =     0.0270
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.058321   .1318892     0.45   0.649     .8289713    1.351123
@@ -4803,16 +3391,16 @@ Log likelihood = -1785.2913                     Prob &gt; chi2       =     0.027
 FARMID       |
    var(_cons)|   .5704959   .3346868                      .1806705    1.801432
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .6115098   .1391301                      .3915064    .9551419
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 166.34              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 166.34              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. DOSCC stays out
+. *Changed by <10%. DOSCC stays out
 . 
 . *Step 4f: Removed PCSampDIM
 . meglm NewIMI i.Tx i.IMIDO PrevCM || FARMID: || CowID:, or family(binomial) link(logit)
@@ -4853,9 +3441,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(4)      =       8.94
-Log likelihood =  -1788.891                     Prob &gt; chi2       =     0.0626
+Log likelihood =  -1788.891                     Prob > chi2       =     0.0626
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.048441   .1304032     0.38   0.704     .8216235    1.337873
@@ -4868,16 +3456,16 @@ Log likelihood =  -1788.891                     Prob &gt; chi2       =     0.062
 FARMID       |
    var(_cons)|    .699638   .3995406                       .228444    2.142728
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .6124416   .1393736                      .3920635    .9566938
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 225.31              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 225.31              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. PCSampDIM stays out
+. *Changed by <10%. PCSampDIM stays out
 . 
 . *Step 4g: Removed PrevCM
 . meglm NewIMI i.Tx i.IMIDO || FARMID: || CowID:, or family(binomial) link(logit)
@@ -4917,9 +3505,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(3)      =       6.24
-Log likelihood = -1790.2521                     Prob &gt; chi2       =     0.1005
+Log likelihood = -1790.2521                     Prob > chi2       =     0.1005
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |    1.04531   .1300553     0.36   0.722      .819106    1.333981
@@ -4931,16 +3519,16 @@ Log likelihood = -1790.2521                     Prob &gt; chi2       =     0.100
 FARMID       |
    var(_cons)|   .7132042   .4068127                      .2331779    2.181426
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .6156926   .1396327                      .3947483    .9603016
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 229.98              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 229.98              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
-. *Changed by &lt;10%. PrevCM stays out
+. *Changed by <10%. PrevCM stays out
 . 
 . *Step 4h: Removed IMIDO
 . meglm NewIMI i.Tx || FARMID: || CowID:, or family(binomial) link(logit)
@@ -4981,9 +3569,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(2)      =       0.17
-Log likelihood = -1793.3536                     Prob &gt; chi2       =     0.9182
+Log likelihood = -1793.3536                     Prob > chi2       =     0.9182
 ------------------------------------------------------------------------------
-      NewIMI | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   1.046956   .1298974     0.37   0.712     .8209531    1.335175
@@ -4994,19 +3582,22 @@ Log likelihood = -1793.3536                     Prob &gt; chi2       =     0.918
 FARMID       |
    var(_cons)|   .6794512   .3882979                      .2216701    2.082617
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .6082918   .1386766                      .3890966    .9509692
 ------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chi2(2) = 223.88              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 223.88              Prob > chi2 = 0.0000
 
-Note: LR test is conservative and provided only for reference.</code></pre>
-</div>
-</div>
-<div id="final-model-newimi" class="section level2">
-<h2>Final model: NewIMI</h2>
-<pre class="r"><code>. *Step 5: Report final model
+Note: LR test is conservative and provided only for reference.
+
+```
+
+
+## Final model: NewIMI
+
+```{r, eval = FALSE}
+. *Step 5: Report final model
 . meglm NewIMI i.Tx || FARMID: || CowID:, family(binomial) link(logit)
 
 Fitting fixed-effects model:
@@ -5045,9 +3636,9 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(2)      =       0.17
-Log likelihood = -1793.3536                     Prob &gt; chi2       =     0.9182
+Log likelihood = -1793.3536                     Prob > chi2       =     0.9182
 ------------------------------------------------------------------------------
-      NewIMI |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .0458864   .1240715     0.37   0.712    -.1972893    .2890622
@@ -5058,10 +3649,10 @@ Log likelihood = -1793.3536                     Prob &gt; chi2       =     0.918
 FARMID       |
    var(_cons)|   .6794512   .3882979                      .2216701    2.082617
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|   .6082918   .1386766                      .3890966    .9509692
 ------------------------------------------------------------------------------
-LR test vs. logistic model: chi2(2) = 223.88              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 223.88              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
@@ -5074,7 +3665,7 @@ Expression   : Marginal predicted mean, predict()
 
 ------------------------------------------------------------------------------
              |            Delta-method
-             |     Margin   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+             |     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           0  |    .147021   .0366388     4.01   0.000     .0752102    .2188317
@@ -5092,7 +3683,7 @@ dy/dx w.r.t. : 2.Tx 3.Tx
 
 ------------------------------------------------------------------------------
              |            Delta-method
-             |      dy/dx   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+             |      dy/dx   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
           Tx |
           1  |   .0049959   .0135311     0.37   0.712    -.0215246    .0315164
@@ -5140,19 +3731,19 @@ Link:                     logit
 Integration method: mvaghermite                 Integration pts.  =          7
 
                                                 Wald chi2(0)      =          .
-Log likelihood = -1793.4389                     Prob &gt; chi2       =          .
+Log likelihood = -1793.4389                     Prob > chi2       =          .
 ------------------------------------------------------------------------------
-      NewIMI |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+      NewIMI |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
        _cons |  -2.138052   .3248702    -6.58   0.000    -2.774785   -1.501318
 -------------+----------------------------------------------------------------
 FARMID       |
    var(_cons)|   .6805675   .3888771                      .2220719    2.085686
 -------------+----------------------------------------------------------------
-FARMID&gt;CowID |
+FARMID>CowID |
    var(_cons)|    .607988   .1386545                      .3888432    .9506386
 ------------------------------------------------------------------------------
-LR test vs. logistic model: chi2(2) = 224.55              Prob &gt; chi2 = 0.0000
+LR test vs. logistic model: chi2(2) = 224.55              Prob > chi2 = 0.0000
 
 Note: LR test is conservative and provided only for reference.
 
@@ -5165,37 +3756,8 @@ Intraclass correlation
 -----------------------------+------------------------------------------------
                       FARMID |   .1486467   .0722295      .0539665    .3482828
                 CowID|FARMID |   .2814409   .0657981      .1715021    .4256474
-------------------------------------------------------------------------------</code></pre>
-</div>
-</div>
+------------------------------------------------------------------------------
+```
 
 
 
-
-</div>
-
-<script>
-
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
-
-
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
-
-</body>
-</html>

@@ -3,7 +3,7 @@ navbar:
   title: "Selective Dry Cow Therapy Analysis"
   left:
     - text: "QTR outcomes log"
-      href: index.html
+      href: QTRoutcomes.html
     - text: "Cow outcomes log"
-      href: Journal.html
+      href: Cowoutcomes.html
 output_dir: "docs"

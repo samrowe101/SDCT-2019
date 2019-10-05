@@ -296,10 +296,10 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">QTR outcomes log</a>
+  <a href="QTRoutcomes.html">QTR outcomes log</a>
 </li>
 <li>
-  <a href="Journal.html">Cow outcomes log</a>
+  <a href="Cowoutcomes.html">Cow outcomes log</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -1215,7 +1215,7 @@ library(survival)
 
 KM &lt;- survfit(Surv(CMTAR, CM) ~ Tx, data = SDCTCOW)
 ggsurvplot(KM, data = SDCTCOW,  title = &quot;&quot;, pval = T, conf.int = F,risk.table.col = &quot;Tx&quot;,risk.table = T, risk.table.y.text.col = TRUE , surv.plot.height = 5, legend.labs = c(&quot;Blanket&quot;,&quot;Culture&quot;,&quot;Algorithm&quot;), tables.theme = theme_cleantable(), ggtheme = theme_bw())</code></pre>
-<p><img src="Journal_files/figure-html/Survival-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/Survival-1.png" width="672" /></p>
 <p><br> <br> <br> <br></p>
 <p>Log-Rank test</p>
 <pre class="r"><code>survdiff(Surv(CMTAR, CM) ~ Tx,data=SDCTCOW,rho=0)</code></pre>
@@ -1279,8 +1279,8 @@ mermaid(&quot;graph LR
         style I fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
         &quot;)</code></pre>
-<p><div id="htmlwidget-9675fb66534665424222" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9675fb66534665424222">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(Clinical mastitis)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\n        style A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script> According to this DAG, I may need to control for the following variables.</p>
+<p><div id="htmlwidget-70a6bf1401b2f8a0b162" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-70a6bf1401b2f8a0b162">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(Clinical mastitis)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\n        style A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script> According to this DAG, I may need to control for the following variables.</p>
 <p>Parity [“Parity”]</p>
 <p>Age [“Age”]</p>
 <p>Yield at most recent test before dry off [“DOMY”]</p>
@@ -1296,12 +1296,12 @@ cor &lt;- Baseline[, c(6,7,9,10,11,13,14)]
 cor$Parity &lt;- as.numeric(cor$Parity)
 cor &lt;- cor(cor, use = &quot;complete.obs&quot;)
 corPlot(cor, numbers=T)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <pre class="r"><code>cor &lt;- Baseline[, c(6,7,9,10,11,13,14)]
 cor$Parity &lt;- as.numeric(cor$Parity)
 cor &lt;- cor(cor, use = &quot;complete.obs&quot;,method=&quot;kendal&quot;)
 corPlot(cor, numbers=T)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Age and Parity highly correlated as expected. Will only offer parity.</p>
 <p>Previous lactation peak SCC is moderately correlated with SCC at last herd test (DOSCC). Will only offer DOSCC.</p>
 <p><br> <br> <br> <br></p>
@@ -1348,13 +1348,13 @@ SR</code></pre>
 <p><br> <br> <br> <br></p>
 <p>Schoenfield residual plots to assess assumption of proportional hazards.</p>
 <pre class="r"><code>ggcoxzph(SR,var = c(&quot;TxCulture&quot;,&quot;TxAlgorithm&quot;))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <pre class="r"><code>ggcoxzph(SR,var = c(&quot;DOSCC&quot;, &quot;DOMY&quot;))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <pre class="r"><code>ggcoxzph(SR,var = c(&quot;Parity2&quot;,&quot;Parity3&quot;))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <pre class="r"><code>ggcoxzph(SR,var = c(&quot;PrevCM1&quot;))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p><br> <br> <br> <br> I will deal with these covariates using stratification (i.e. fitting seperate baseline hazards)</p>
 <p>I must create categorical variables to allow for this (not shown here).</p>
 <p>Dry off milk yield [“DOMY”] -&gt; median split (“DOMYcat” = 0 / 1).</p>
@@ -1536,7 +1536,7 @@ cox.zph(SR)</code></pre>
 ## GLOBAL            NA 2.596282 0.273</code></pre>
 <pre class="r"><code>SR &lt;- cox.zph(SR)
 ggcoxzph(SR,var = c(&quot;TxCulture&quot;,&quot;TxAlgorithm&quot;))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-32-1.png" width="672" /> Sufficient evidence to use Cox model.</p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-32-1.png" width="672" /> Sufficient evidence to use Cox model.</p>
 <p><br> <br> <br></p>
 </div>
 </div>
@@ -1594,7 +1594,7 @@ CrossTable(SDCTCOW$Tx,SDCTCOW$Cull2,prop.c=FALSE,prop.t=FALSE,prop.chisq = FALSE
 <p>Kaplan Meier curve</p>
 <pre class="r"><code>KM &lt;- survfit(Surv(Cull2TAR, Cull2) ~ Tx, data = SDCTCOW)
 ggsurvplot(KM, data = SDCTCOW,  title = &quot;&quot;, pval = T, conf.int = F,risk.table.col = &quot;Tx&quot;,risk.table = T, risk.table.y.text.col = TRUE , surv.plot.height = 5, legend.labs = c(&quot;Blanket&quot;,&quot;Culture&quot;,&quot;Algorithm&quot;), tables.theme = theme_cleantable(), ggtheme = theme_bw())</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-35-1.png" width="672" /> <br> <br> <br> <br></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-35-1.png" width="672" /> <br> <br> <br> <br></p>
 <p>Log-Rank test</p>
 <pre class="r"><code>survdiff(Surv(Cull2TAR, Cull2) ~ Tx,data=SDCTCOW,rho=0)</code></pre>
 <pre><code>## Call:
@@ -1656,8 +1656,8 @@ mermaid(&quot;graph LR
         style I fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
         &quot;)</code></pre>
-<p><div id="htmlwidget-848a01cd992e65b272c6" style="width:960px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-848a01cd992e65b272c6">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(Culling or Death)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\n        style A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script> According to this DAG, I may need to control for the following variables:</p>
+<p><div id="htmlwidget-773874dfcd8dbe564cf6" style="width:960px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-773874dfcd8dbe564cf6">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(Culling or Death)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\n        style A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script> According to this DAG, I may need to control for the following variables:</p>
 <p>Parity [“Parity”]. Will not offer Age [“Age”] as it is highly correlated.</p>
 <p>Yield at most recent test before dry off [“DOMY”]</p>
 <p>Somatic cell count at last herd test during previous lactation [“DOSCC”] &lt;- will not offer PrevSCCHI as it was correlated with DOSCC</p>
@@ -1705,14 +1705,14 @@ SR</code></pre>
 <p><br> <br> <br></p>
 <p>Schoenfield residual plots</p>
 <pre class="r"><code>ggcoxzph(SR,var = c(&quot;TxCulture&quot;,&quot;TxAlgorithm&quot;))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-40-1.png" width="672" /> <br> <br> <br> <br></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-40-1.png" width="672" /> <br> <br> <br> <br></p>
 <p>DOSCC and DOMY don’t meet the assumption of proportional hazards</p>
 <pre class="r"><code>ggcoxzph(SR,var = c(&quot;DOSCC&quot;, &quot;DOMY&quot;))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <pre class="r"><code>ggcoxzph(SR,var = c(&quot;Parity2&quot;,&quot;Parity3&quot;))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <pre class="r"><code>ggcoxzph(SR,var = c(&quot;PrevCM1&quot;))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-43-1.png" width="672" /> <br> <br> <br> <br></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-43-1.png" width="672" /> <br> <br> <br> <br></p>
 <p>Refit cox model with seperate baselines (stratified) for DOMY and DOSCC.</p>
 <p>No evidence of other time-varying covariates or predictors (Tx).</p>
 <pre class="r"><code>SR &lt;- coxph(Surv(Cull2TAR, Cull2) ~ Parity + strata(DOMYcat) + strata(DOSCM) + PrevCM + Tx + cluster(FARMID), data=SDCTCOW)
@@ -2000,7 +2000,7 @@ cox.zph(SR)</code></pre>
 ## GLOBAL          NA  1.53 0.466</code></pre>
 <pre class="r"><code>SR &lt;- cox.zph(SR)
 ggcoxzph(SR,var = c(&quot;TxCulture&quot;,&quot;TxAlgorithm&quot;))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 </div>
 </div>
 <div id="step-7b-final-cox-model-for-culling-or-death-1---120-dim-using-p-value-based-backwards-stepwise-selection" class="section level3">
@@ -2081,13 +2081,13 @@ print(summarytools::dfSummary(DHIoutcome, valid.col=FALSE, graph.magnif=0.8, var
 <p>Somatic cell count (log x 10,000 cells)</p>
 <pre class="r"><code>library(qualityTools)
 qqPlot(log(SDCTCOWDHI$SCC+1))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <pre class="r"><code>hist(log(SDCTCOWDHI$SCC+1))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-65-1.png" width="672" /> <br> <br> <br> <br> Milk yield (kg)</p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-65-1.png" width="672" /> <br> <br> <br> <br> Milk yield (kg)</p>
 <pre class="r"><code>qqPlot(SDCTCOWDHI$MY)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <pre class="r"><code>hist(SDCTCOWDHI$MY)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-67-1.png" width="672" /> <br> <br> <br> <br></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-67-1.png" width="672" /> <br> <br> <br> <br></p>
 </div>
 </div>
 <div id="outcome-3-somatic-cell-count" class="section level1">
@@ -2139,8 +2139,8 @@ mermaid(&quot;graph LR
         style D fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
         &quot;)</code></pre>
-<p><div id="htmlwidget-cdefb7ac945c0032ee8b" style="width:960px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cdefb7ac945c0032ee8b">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(SCC)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(Days in milk at test)-->U\n        D-->T\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\n        style A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style D fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script> According to this DAG, I may need to control for the following variables:</p>
+<p><div id="htmlwidget-63ecced7213828507c2f" style="width:960px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-63ecced7213828507c2f">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(SCC)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(Days in milk at test)-->U\n        D-->T\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\n        style A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style D fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script> According to this DAG, I may need to control for the following variables:</p>
 <p>Parity [“Parity”] &lt;- Age not offered as highly correlated</p>
 <p>Yield at most recent test before dry off [“DOMY”]</p>
 <p>Somatic cell count at last herd test during previous lactation [“DOSCC”] &lt;- PrevSCCHI not offered as correlated</p>
@@ -2410,7 +2410,7 @@ emm$UCL &lt;- exp(emm$asymp.UCL)
 emm &lt;- emm %&gt;% subset(select=c(Tx,TestDIMcat20,SCC,LCL,UCL))
 curve &lt;- ggplot(emm) + coord_cartesian(ylim = (c(0,100))) + aes(x=TestDIMcat20, y=SCC, group=Tx, colour=Tx) + geom_point() + geom_line(aes(colour=Tx,linetype=Tx)) + geom_ribbon(aes(ymin=emm$LCL, ymax=emm$UCL,colour=Tx,fill=Tx), linetype=0, alpha=0.1)
 curve</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-84-1.png" width="672" /> <br> <br> <br> <br></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-84-1.png" width="672" /> <br> <br> <br> <br></p>
 <p>Reported as back-transformed estimated marginal means by herd test day, with interaction with test DIM</p>
 <pre class="r"><code>mm0 &lt;- lmer(LSCC ~ Tx*TestDIMcat20 + PrevCM + DOSCC + (1|FARMID/CowID), data=SDCTCOWDHI)
 atx &lt;- c(10,30,50,70,90,110)
@@ -2421,7 +2421,7 @@ emm$UCL &lt;- exp(emm$asymp.UCL)
 emm &lt;- emm %&gt;% subset(select=c(Tx,TestDIMcat20,SCC,LCL,UCL))
 curve &lt;- ggplot(emm) + coord_cartesian(ylim = (c(0,100))) + aes(x=TestDIMcat20, y=SCC, group=Tx, colour=Tx) + geom_point() + geom_line(aes(colour=Tx,linetype=Tx)) + geom_ribbon(aes(ymin=emm$LCL, ymax=emm$UCL,colour=Tx,fill=Tx), linetype=0, alpha=0.1)
 curve</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-85-1.png" width="672" /> <br> <br> <br> <br></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-85-1.png" width="672" /> <br> <br> <br> <br></p>
 </div>
 <div id="step-7-model-diagnostics" class="section level3">
 <h3>Step 7: Model diagnostics</h3>
@@ -2431,10 +2431,10 @@ ggplot(data.frame(eta=predict(mm0,type=&quot;link&quot;),pearson=residuals(mm0,t
        aes(x=eta,y=pearson)) +
   geom_point() +
   theme_bw()</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 <p>Checking normality of residuals</p>
 <pre class="r"><code>qqnorm(residuals(mm0))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <p>Evidence of small L tail. Although some evidence of heteroskedasticity and not perfectly normal residuals, I believe these are allowable for this model.</p>
 </div>
 </div>
@@ -2488,8 +2488,8 @@ mermaid(&quot;graph LR
         style D fill:#FFFFFF, stroke-width:0px
         style U fill:#FFFFFF, stroke-width:2px
         &quot;)</code></pre>
-<p><div id="htmlwidget-70f08ffd872c7b913f4e" style="width:960px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-70f08ffd872c7b913f4e">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(Milk yield)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(Days in milk at test)-->U\n        D-->T\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\n        style A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style D fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script> According to this DAG, I may need to control for the following variables:</p>
+<p><div id="htmlwidget-9675fb66534665424222" style="width:960px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9675fb66534665424222">{"x":{"diagram":"graph LR\n        T(Treatment)-->U(Milk yield)\n        A(Age)-->T\n        P(Parity)-->T\n        M(Yield at dry-off)-->T\n        S(SCC during prev lactation)-->T\n        C(CM in prev lact)-->T\n        D(Days in milk at test)-->U\n        D-->T\n        A-->U\n        P-->U\n        M-->U\n        S-->U\n        C-->U\n        C-->M\n        P-->C\n        P-->S\n        P-->M\n        A-->P\n        A-->C\n        A-->S\n        A-->M\n        M-->S\n        C-->S\n        style A fill:#FFFFFF, stroke-width:0px\n        style T fill:#FFFFFF, stroke-width:2px\n        style P fill:#FFFFFF, stroke-width:0px\n        style M fill:#FFFFFF, stroke-width:0px\n        style S fill:#FFFFFF, stroke-width:0px\n        style C fill:#FFFFFF, stroke-width:0px\n        style I fill:#FFFFFF, stroke-width:0px\n        style D fill:#FFFFFF, stroke-width:0px\n        style U fill:#FFFFFF, stroke-width:2px\n        "},"evals":[],"jsHooks":[]}</script> According to this DAG, I may need to control for the following variables:</p>
 <p>Parity [“Parity”] &lt;- Age not offered as highly correlated</p>
 <p>Yield at most recent test before dry off [“DOMY”]</p>
 <p>Somatic cell count at last herd test during previous lactation [“DOSCC”] &lt;- PrevSCCHI not offered as correlated</p>
@@ -2920,7 +2920,7 @@ emm %&gt;% subset(select=c(Tx,TestDIMcat20,MY,LCL,UCL))</code></pre>
 <p>Plotting model as predicted values</p>
 <pre class="r"><code>curve &lt;- ggplot(emm) + coord_cartesian(ylim = (c(0,55))) + aes(x=TestDIMcat20, y=MY, group=Tx, colour=Tx) + geom_point() + geom_line(aes(colour=Tx,linetype=Tx)) + geom_ribbon(aes(ymin=emm$LCL, ymax=emm$UCL,colour=Tx,fill=Tx), linetype=0, alpha=0.1)
 curve</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-107-1.png" width="672" /> <br> <br> <br> <br> Reported as estimated marginal means by test day category with interaction with herd test DIM</p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-107-1.png" width="672" /> <br> <br> <br> <br> Reported as estimated marginal means by test day category with interaction with herd test DIM</p>
 <pre class="r"><code>mm0 &lt;- lmer(MY ~ Tx*TestDIMcat20 + Parity + DOMY + (1|FARMID/CowID), data=SDCTCOWDHI)
 atx &lt;- c(10,30,50,70,90,110)
 emm &lt;- emmeans(mm0, ~Tx*TestDIMcat20, at=list(atx)) %&gt;% tidy()
@@ -2931,7 +2931,7 @@ emm &lt;- emm %&gt;% subset(select=c(Tx,TestDIMcat20,MY,LCL,UCL))
 
 curve &lt;- ggplot(emm) + coord_cartesian(ylim = (c(0,55))) + aes(x=TestDIMcat20, y=MY, group=Tx, colour=Tx) + geom_point() + geom_line(aes(colour=Tx,linetype=Tx)) + geom_ribbon(aes(ymin=emm$LCL, ymax=emm$UCL,colour=Tx,fill=Tx), linetype=0, alpha=0.1)
 curve</code></pre>
-<p><img src="Journal_files/figure-html/emmeans-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/emmeans-1.png" width="672" /></p>
 </div>
 <div id="step-7-model-diagnostics-1" class="section level3">
 <h3>Step 7: Model diagnostics</h3>
@@ -2941,10 +2941,10 @@ ggplot(data.frame(eta=predict(mm0,type=&quot;link&quot;),pearson=residuals(mm0,t
        aes(x=eta,y=pearson)) +
   geom_point() +
   theme_bw()</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
 <p>Checking normality of residuals</p>
 <pre class="r"><code>qqnorm(residuals(mm0))</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<p><img src="Cowoutcomes_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
 <p>I am happy with homoskedasticity and normal residuals assumptions</p>
 </div>
 </div>
