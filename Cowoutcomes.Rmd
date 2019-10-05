@@ -2,7 +2,7 @@
 title: "Randomized controlled non-inferiority trial investigating the effect of two selective dry cow therapy protocols on antibiotic use and udder health - cow-level outcomes"
 date: August 1st, 2019
 author: Sam Rowe (samrowe101@gmail.com)
- 
+
 output:
   html_document:
     df_print: paged
